@@ -1768,6 +1768,17 @@ section { padding: 160px 8% 140px; position: relative; }
     background-position: center !important;
   }
   
+  /* Make the Hero background photo considerably darker on mobile for high contrast */
+  #hero .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.92) 50%,
+      rgba(0,0,0,0.98) 85%,
+      rgba(0,0,0,1) 100%
+    ) !important;
+  }
+  
   .editorial-bg {
     background-position: 68% center !important; /* Crop focused on artist visual */
   }
@@ -1878,7 +1889,37 @@ section { padding: 160px 8% 140px; position: relative; }
   .compare-card { padding: 36px 28px; }
   .plan-card { padding: 36px 28px; }
   .finance-block { padding: 28px 20px; }
-  .manifesto-item { padding: 64px 32px; }
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    background: transparent;
+  }
+  .manifesto-item {
+    padding: 48px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .manifesto-item:last-child {
+    border-bottom: none;
+  }
+  /* Zigzag alignment for editorial rhythm on mobile screens */
+  .manifesto-item:nth-child(1) {
+    text-align: left;
+  }
+  .manifesto-item:nth-child(2) {
+    text-align: right;
+  }
+  .manifesto-item:nth-child(2) .manifesto-num {
+    text-align: right;
+  }
+  .manifesto-item:nth-child(3) {
+    text-align: left;
+  }
+  .manifesto-text {
+    font-size: 1.45rem !important;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
   .port-img-wrap { aspect-ratio: 16/9 !important; }
   
   .video-showcase-split { padding: 24px 16px; gap: 32px; }

@@ -530,7 +530,7 @@ function renderModalGraphic(type) {
         <div class="mock-analytics-chart mono">
           <div class="mock-chart-header">
             <span>TRAFFIC_METRIC</span>
-            <span class="blue-text">+340% CONV</span>
+            <span class="blue-text">100% CONV</span>
           </div>
           <svg class="mock-chart-svg" viewBox="0 0 100 40">
             <path class="mock-chart-line" d="M 5 35 Q 25 30 45 15 T 85 5 T 95 2"/>
@@ -599,3 +599,20 @@ function renderModalGraphic(type) {
 
   graphicContainer.innerHTML = html;
 }
+
+// ── FORCE MOBILE VIDEO AUTOPLAY ON FIRST TOUCH OR SCROLL ──
+const showcaseVideo = document.querySelector('.showcase-video');
+if (showcaseVideo) {
+  // Attempt standard immediate play
+  showcaseVideo.play().catch(() => {
+    // Fallback trigger on first user scrolling/touch interaction
+    const forcePlay = () => {
+      showcaseVideo.play().catch(() => {});
+      window.removeEventListener('scroll', forcePlay);
+      window.removeEventListener('touchstart', forcePlay);
+    };
+    window.addEventListener('scroll', forcePlay, { passive: true });
+    window.addEventListener('touchstart', forcePlay, { passive: true });
+  });
+}
+
