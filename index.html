@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es" class="lang-es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>11.04_DIGITAL — EPK Systems for Electronic Artists</title>
+  <meta name="description" content="Interactive EPK systems for DJs, producers and electronic artists. Stop sending boring PDFs."/>
+  <meta property="og:title" content="11.04_DIGITAL — EPK Systems"/>
+  <meta property="og:description" content="Stop sending boring PDFs. Interactive EPK systems for electronic artists."/>
+  <meta property="og:image" content="Instagram 3.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-inner">
+      <img src="Logo/Logo.png" alt="11.04 DIGITAL" class="loader-logo"/>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <span class="loader-text mono">INITIALIZING_SYSTEM...</span>
+    </div>
+  </div>
+
+  <!-- SCANLINES -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav">
+    <a href="#hero" class="nav-brand">
+      <img src="Logo/Logo.png" alt="11.04 DIGITAL"/>
+    </a>
+    <div class="nav-links">
+      <a href="#problema" class="mono">/SISTEMA</a>
+      <a href="#portfolio" class="mono">/PORTFOLIO</a>
+      <a href="#planes" class="mono">/PLANES</a>
+      <a href="#cta" class="nav-cta mono">
+        <span class="t" data-es="SOLICITAR EPK →" data-en="REQUEST EPK →">SOLICITAR EPK →</span>
+      </a>
+      <!-- LANG SWITCHER -->
+      <div class="lang-switcher mono" aria-label="Language selector">
+        <button id="btn-es" class="lang-btn" aria-label="Español">ES</button>
+        <span class="lang-sep">·</span>
+        <button id="btn-en" class="lang-btn" aria-label="English">EN</button>
+      </div>
+    </div>
+    <div class="nav-right-mobile">
+      <div class="lang-switcher lang-switcher-mobile mono">
+        <button id="btn-es-m" class="lang-btn" aria-label="Español">ES</button>
+        <span class="lang-sep">·</span>
+        <button id="btn-en-m" class="lang-btn" aria-label="English">EN</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#problema" onclick="closeNav()">/SISTEMA</a>
+    <a href="#portfolio" onclick="closeNav()">/PORTFOLIO</a>
+    <a href="#planes" onclick="closeNav()">/PLANES</a>
+    <a href="#cta" onclick="closeNav()">
+      <span class="t" data-es="SOLICITAR EPK →" data-en="REQUEST EPK →">SOLICITAR EPK →</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       01 — HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+    <div class="hero-meta mono">
+      <span>[SYSTEM_ONLINE]</span>
+      <span>1104_DIGITAL / BA, AR / 2024</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-grid-container">
+        <div class="hero-text">
+          <div class="hero-label mono reveal">/ARCHITECTURE_FOR_ARTISTS</div>
+
+          <!-- BILINGUAL TITLE -->
+          <h1 class="hero-title reveal-up">
+            <span class="lang-es-el">CREAMOS WEBS DE <span class="blue-accent-text">ALTO RENDIMIENTO</span> PARA LA ESCENA ELECTRÓNICA.</span>
+            <span class="lang-en-el">WE BUILD <span class="blue-accent-text">HIGH-PERFORMANCE</span> WEBSITES FOR THE ELECTRONIC MUSIC SCENE.</span>
+          </h1>
+
+          <!-- BILINGUAL SUBTITLE -->
+          <p class="hero-sub reveal-up-2">
+            <span class="lang-es-el">Arquitectura digital y EPKs a medida para DJs, sellos discográficos y clubes. Reemplazamos links genéricos y PDFs pesados por plataformas web nativas e instantáneas, diseñadas para potenciar tus contrataciones internacionales.</span>
+            <span class="lang-en-el">Bespoke digital architecture &amp; EPKs for world-class DJs, record labels, and venues. We replace generic links and heavy PDFs with custom, lightning-fast platforms designed to scale your international bookings.</span>
+          </p>
+
+          <!-- BILINGUAL CTAs -->
+          <div class="hero-btns reveal-up-3">
+            <a href="#portfolio" class="btn-primary">
+              <span class="t" data-es="VER SHOWCASE" data-en="VIEW SHOWCASE">VER SHOWCASE</span>
+            </a>
+            <a href="#cta" class="btn-outline">
+              <span class="t" data-es="SOLICITAR EPK →" data-en="REQUEST YOUR EPK →">SOLICITAR EPK →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visuals reveal-up-2">
+          <div class="hero-mockup-composition">
+            <img src="Mock Up/MOCK UP alejo.png" alt="Desktop EPK View" class="hero-mockup-laptop" loading="eager"/>
+            <img src="Mock Up/Mock up Jansound.png" alt="Mobile EPK View" class="hero-mockup-phone" loading="eager"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-coords mono" aria-hidden="true">
+      <span>34°36'S / 58°22'W</span>
+      <span>SYS_VER: 2.4.0</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span class="mono">EPK &nbsp;·&nbsp; INTERACTIVE &nbsp;·&nbsp; BOOKING_SYSTEM &nbsp;·&nbsp; TECHNICAL_RIDER &nbsp;·&nbsp; SEO &nbsp;·&nbsp; CDN_GLOBAL &nbsp;·&nbsp; MOBILE_FIRST &nbsp;·&nbsp; PRESS_KIT &nbsp;·&nbsp; STREAMING_HUB &nbsp;·&nbsp; ARCHITECTURE_FOR_ARTISTS &nbsp;·&nbsp;</span>
+      <span class="mono">EPK &nbsp;·&nbsp; INTERACTIVE &nbsp;·&nbsp; BOOKING_SYSTEM &nbsp;·&nbsp; TECHNICAL_RIDER &nbsp;·&nbsp; SEO &nbsp;·&nbsp; CDN_GLOBAL &nbsp;·&nbsp; MOBILE_FIRST &nbsp;·&nbsp; PRESS_KIT &nbsp;·&nbsp; STREAMING_HUB &nbsp;·&nbsp; ARCHITECTURE_FOR_ARTISTS &nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       02 — PROBLEMA
+  ═══════════════════════════════════════ -->
+  <section id="problema">
+    <div class="section-label mono reveal">/01 — PROBLEM_STATEMENT</div>
+    <h2 class="section-title reveal-up">
+      <span class="lang-es-el">Tu música ya suena<br/>profesional.<br/>Tu presencia digital<br/><span class="dim-text">no.</span></span>
+      <span class="lang-en-el">Your music already sounds<br/>professional.<br/>Your digital presence<br/><span class="dim-text">doesn't.</span></span>
+    </h2>
+
+    <div class="compare-grid">
+      <!-- COLUMN 1: OBSOLETE PARADIGM -->
+      <div class="compare-card compare-bad reveal">
+        <!-- Background Number -->
+        <div class="compare-bg-number mono" aria-hidden="true">01</div>
+        
+        <div class="compare-header-wrap">
+          <div class="compare-badge badge-bad mono">✕ ANACRÓNICO</div>
+          <h3 class="compare-title title-bad">PDF / LINKTREE</h3>
+        </div>
+
+        <ul class="compare-list">
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="No genera conexiones" data-en="Generates no connections">No genera conexiones</span>
+              <span class="compare-item-code mono">BOUNCE_RATE: 89% / NO_STATS</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Pesa demasiado — no carga" data-en="Too heavy — doesn't load">Pesa demasiado — no carga</span>
+              <span class="compare-item-code mono">FILE_SIZE: +25MB / LATENCY_ERR</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Links rotos, info desactualizada" data-en="Broken links, outdated info">Links rotos, info desactualizada</span>
+              <span class="compare-item-code mono">404_REDIRECT / EXPIRED_LINKS</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Google Drive desordenado" data-en="Messy Google Drive">Google Drive desordenado</span>
+              <span class="compare-item-code mono">ACCESS_DENIED / MESSY_STRUCTURE</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Sin analytics ni tracking" data-en="No analytics or tracking">Sin analytics ni tracking</span>
+              <span class="compare-item-code mono">NO_PIXEL / BLIND_STATS</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="No funciona en mobile" data-en="Doesn't work on mobile">No funciona en mobile</span>
+              <span class="compare-item-code mono">LAYOUT_SHIFT / NON_RESPONSIVE</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Se ve genérico, sin identidad" data-en="Generic, no identity">Se ve genérico, sin identidad</span>
+              <span class="compare-item-code mono">NO_BRAND / TEMPLATE_RUIDO</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-bad"><span class="icon">✕</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Promotores no hacen click" data-en="Promoters don't click">Promotores no hacen click</span>
+              <span class="compare-item-code mono">BOREDOM_TRIGGER / SKIP_RATE: 90%</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="compare-footer-wrap">
+          <div class="compare-status status-bad mono">
+            <span class="status-dot dot-bad"></span>
+            <span>STATUS: BOOKING_FAIL</span>
+          </div>
+          <div class="compare-metric metric-bad">
+            <div class="metric-num-wrap red-accent-text">-90%</div>
+            <div class="metric-sep sep-bad"></div>
+            <div class="metric-desc mono">
+              <span class="t" data-es="Conversión nula.<br/>PDF obsoleto.<br/>Linktree roto." data-en="Zero conversions.<br/>Obsolete PDF.<br/>Broken linktree.">Conversión nula.<br/>PDF obsoleto.<br/>Linktree roto.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: HIGH PERFORMANCE INFRASTRUCTURE -->
+      <div class="compare-card compare-good reveal">
+        <!-- Background Number -->
+        <div class="compare-bg-number mono" aria-hidden="true">02</div>
+
+        <div class="compare-header-wrap">
+          <div class="compare-badge badge-good mono">▸ ALTO RENDIMIENTO</div>
+          <h3 class="compare-title title-good">EPK INTERACTIVO</h3>
+        </div>
+
+        <ul class="compare-list">
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Mobile optimized / carga instantánea" data-en="Mobile optimized / instant load">Mobile optimized / carga instantánea</span>
+              <span class="compare-item-code mono">LOAD_TIME: 180ms</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Streaming integrado — SoundCloud" data-en="Integrated streaming — SoundCloud">Streaming integrado — SoundCloud</span>
+              <span class="compare-item-code mono">NATIVE_EMBED / ZERO_REDIRECT</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Booking directo desde la web" data-en="Direct booking from the web">Booking directo desde la web</span>
+              <span class="compare-item-code mono">DIRECT_CONTACT / NO_FRICTION</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Analytics y tracking en tiempo real" data-en="Real-time analytics & tracking">Analytics y tracking en tiempo real</span>
+              <span class="compare-item-code mono">WHO / WHEN / WHERE</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Diseño de identidad premium" data-en="Premium identity design">Diseño de identidad premium</span>
+              <span class="compare-item-code mono">CUSTOM_BRAND / NOT_A_TEMPLATE</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="SEO técnico — te encuentran" data-en="Technical SEO — they find you">SEO técnico — te encuentran</span>
+              <span class="compare-item-code mono">GOOGLE / PROMOTERS / BOOKERS</span>
+            </div>
+          </li>
+          <li>
+            <span class="box-good"><span class="icon">✓</span></span>
+            <div class="compare-text">
+              <span class="compare-item-title t" data-es="Un link que dice quién sos" data-en="One link that says who you are">Un link que dice quién sos</span>
+              <span class="compare-item-code mono">IDENTITY_ONLINE: ACTIVE_</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="compare-footer-wrap">
+          <div class="compare-status status-good mono">
+            <span class="status-dot dot-good"></span>
+            <span>STATUS: BOOKING_READY</span>
+          </div>
+          <div class="compare-metric metric-good">
+            <div class="metric-num-wrap blue-accent-text">+340%</div>
+            <div class="metric-sep sep-good"></div>
+            <div class="metric-desc mono">
+              <span class="t" data-es="Sistema EPK.<br/>Carga en 180ms.<br/>Identity online." data-en="EPK System.<br/>180ms Page Load.<br/>Identity online.">Sistema EPK.<br/>Carga en 180ms.<br/>Identity online.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       03 — FEATURES
+  ═══════════════════════════════════════ -->
+  <section id="features">
+    <div class="section-label mono reveal">/02 — SYSTEM_COMPONENTS</div>
+    <h2 class="section-title reveal-up">
+      <span class="lang-es-el">Todo lo que incluye<br/>el sistema.</span>
+      <span class="lang-en-el">Everything included<br/>in the system.</span>
+    </h2>
+    <div class="features-grid">
+      <div class="feat-card reveal" data-comp="soundcloud"><div class="feat-icon mono">◈</div><h3>SoundCloud Player</h3><p class="mono feat-desc"><span class="t" data-es="Native streaming integrado. Sin redirects." data-en="Native streaming integrated. No redirects.">Native streaming integrado. Sin redirects.</span></p></div>
+      <div class="feat-card reveal" data-comp="booking"><div class="feat-icon mono">◈</div><h3>Booking System</h3><p class="mono feat-desc"><span class="t" data-es="Formulario directo. Sin fricción." data-en="Direct form. Zero friction.">Formulario directo. Sin fricción.</span></p></div>
+      <div class="feat-card reveal" data-comp="rider"><div class="feat-icon mono">◈</div><h3>Technical Rider</h3><p class="mono feat-desc"><span class="t" data-es="Input requirements interactivo." data-en="Interactive input requirements.">Input requirements interactivo.</span></p></div>
+      <div class="feat-card reveal" data-comp="photos"><div class="feat-icon mono">◈</div><h3>Press Photos</h3><p class="mono feat-desc"><span class="t" data-es="Galería optimizada. Descarga directa." data-en="Optimized gallery. Direct download.">Galería optimizada. Descarga directa.</span></p></div>
+      <div class="feat-card reveal" data-comp="analytics"><div class="feat-icon mono">◈</div><h3>Analytics</h3><p class="mono feat-desc"><span class="t" data-es="Quién vio, cuándo, desde dónde." data-en="Who viewed, when, from where.">Quién vio, cuándo, desde dónde.</span></p></div>
+      <div class="feat-card reveal" data-comp="mobile"><div class="feat-icon mono">◈</div><h3>Mobile Optimized</h3><p class="mono feat-desc"><span class="t" data-es="100% funcional en smartphone." data-en="100% functional on smartphone.">100% funcional en smartphone.</span></p></div>
+      <div class="feat-card reveal" data-comp="seo"><div class="feat-icon mono">◈</div><h3>SEO <span class="t" data-es="Técnico" data-en="Technical">Técnico</span></h3><p class="mono feat-desc"><span class="t" data-es="Te encuentran. Google, promotores." data-en="They find you. Google, promoters.">Te encuentran. Google, promotores.</span></p></div>
+      <div class="feat-card reveal" data-comp="language"><div class="feat-icon mono">◈</div><h3>Multi-language Bio</h3><p class="mono feat-desc"><span class="t" data-es="ES / EN. Mercados internacionales." data-en="ES / EN. International markets.">ES / EN. Mercados internacionales.</span></p></div>
+      <div class="feat-card reveal feat-card-wide" data-comp="cdn"><div class="feat-icon mono">◈</div><h3>CDN Global</h3><p class="mono feat-desc"><span class="t" data-es="Carga en milisegundos desde cualquier punto del planeta." data-en="Loads in milliseconds from anywhere on the planet.">Carga en milisegundos desde cualquier punto del planeta.</span></p></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       04 — SCENE PACK
+  ═══════════════════════════════════════ -->
+  <section id="scene" class="scene-section">
+    <div class="scene-bg" aria-hidden="true">
+      <div class="scene-overlay"></div>
+    </div>
+    <div class="scene-content reveal-up">
+      <div class="mono scene-label">/03 — SYSTEM_OFFER</div>
+      <h2 class="scene-title">SCENE_PACK</h2>
+      <div class="scene-discount">30% OFF</div>
+      <p class="scene-sub mono">
+        <span class="lang-es-el">SI 5 ARTISTAS SE UNEN, CADA UNO OBTIENE 30% OFF EN SU INFRAESTRUCTURA DIGITAL.</span>
+        <span class="lang-en-el">IF 5 ARTISTS JOIN FORCES, EACH ONE GETS 30% OFF ON THEIR DIGITAL INFRASTRUCTURE.</span>
+      </p>
+      <a href="#cta" class="btn-primary">
+        <span class="t" data-es="SUMAR MI ESCENA →" data-en="JOIN THE SCENE →">SUMAR MI ESCENA →</span>
+      </a>
+    </div>
+    <div class="scene-grid-lines" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       05 — PORTFOLIO (MOCKUPS)
+  ═══════════════════════════════════════ -->
+  <section id="portfolio">
+    <div class="section-label mono reveal">/04 — PORTFOLIO</div>
+    <h2 class="section-title reveal-up">
+      <span class="lang-es-el">El sistema<br/>en producción.</span>
+      <span class="lang-en-el">The system<br/>in production.</span>
+    </h2>
+
+    <div class="portfolio-grid">
+      <!-- JANSOUND -->
+      <a href="https://jansound.com" target="_blank" rel="noopener" class="port-card reveal">
+        <div class="port-img-wrap port-img-landscape">
+          <img src="Mock Up/mockup jansound portafoloio.png" alt="JANSOUND — Desktop Digital EPK" loading="lazy"/>
+          <div class="port-overlay">
+            <span class="mono t" data-es="ABRIR SITIO →" data-en="OPEN SITE →">ABRIR SITIO →</span>
+          </div>
+        </div>
+        <div class="port-info">
+          <div class="port-meta">
+            <span class="mono port-num">01</span>
+            <span class="mono blue-text">/EPK + WEB + SYSTEM</span>
+          </div>
+          <h3 class="port-name">JANSOUND</h3>
+          <p class="port-desc mono">Buenos Aires, AR — Electronic producer &amp; DJ</p>
+        </div>
+      </a>
+
+      <!-- ALEJO V -->
+      <a href="https://alejo-v.com" target="_blank" rel="noopener" class="port-card reveal">
+        <div class="port-img-wrap port-img-landscape">
+          <img src="Mock Up/MOCK UP alejo.png" alt="ALEJO V — Desktop Digital EPK" loading="lazy"/>
+          <div class="port-overlay">
+            <span class="mono t" data-es="ABRIR SITIO →" data-en="OPEN SITE →">ABRIR SITIO →</span>
+          </div>
+        </div>
+        <div class="port-info">
+          <div class="port-meta">
+            <span class="mono port-num">02</span>
+            <span class="mono blue-text">/EPK + BOOKING</span>
+          </div>
+          <h3 class="port-name">ALEJO V</h3>
+          <p class="port-desc mono">Buenos Aires, AR — Techno artist</p>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- VIDEO SHOWCASE SPLIT (50/50 BALANCE) -->
+    <div class="video-showcase-split reveal">
+      <div class="video-column">
+        <div class="video-label mono">/VIDEO_SCROLL — JANSOUND.COM</div>
+        <div class="video-wrap-split">
+          <video src="Mock Up/Video scroll Jansound.mp4" autoplay muted loop playsinline preload="none" class="showcase-video" aria-label="JANSOUND site scroll demo"></video>
+          <div class="video-frame-overlay" aria-hidden="true"></div>
+        </div>
+        <p class="video-caption mono">
+          <span class="t" data-es="Navegación fluida y reproducción en tiempo real." data-en="Fluid navigation and real-time playback.">Navegación fluida y reproducción en tiempo real.</span>
+        </p>
+      </div>
+      <div class="video-info-column mono">
+        <div class="video-info-header">/SYSTEM_METRICS_AND_CONVERSION</div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-num">+340%</span>
+            <span class="metric-label">BOOKING_CONVERSION</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">180ms</span>
+            <span class="metric-label">PAGE_LOAD_SPEED</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">94%</span>
+            <span class="metric-label">MOBILE_ENGAGEMENT</span>
+          </div>
+        </div>
+        <div class="video-description">
+          <p class="lang-es-el">El EPK interactivo de alto rendimiento captura el interés de bookers internacionales en menos de 5 segundos. Eliminamos archivos PDF adjuntos de gran peso y redirecciones rotas de linktree para consolidar de forma limpia tu presencia en la escena global.</p>
+          <p class="lang-en-el">High-performance interactive EPKs capture international bookers' attention in under 5 seconds. We eliminate heavy PDF attachments and broken linktree redirects to cleanly solidify your presence in the global electronic scene.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       05.5 — EDITORIAL SHOWCASE
+  ═══════════════════════════════════════ -->
+  <section class="editorial-showcase" id="editorial">
+    <div class="editorial-bg" aria-hidden="true">
+      <div class="editorial-overlay"></div>
+    </div>
+    <div class="editorial-grid-lines" aria-hidden="true"></div>
+    <div class="editorial-content reveal-up">
+      <div class="editorial-tag mono">/04.5 — GLOBAL_AUDIO_INFRASTRUCTURE</div>
+      <h2 class="editorial-title">
+        <span class="lang-es-el">TRANSFORMAMOS CAPITAL CULTURAL EN INFRAESTRUCTURA DIGITAL.</span>
+        <span class="lang-en-el">WE CONVERT CULTURAL CAPITAL INTO DIGITAL INFRASTRUCTURE.</span>
+      </h2>
+      <div class="editorial-coords mono">BA / AR // 2026 // SYSTEM_ONLINE</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       06 — MANIFESTO
+  ═══════════════════════════════════════ -->
+  <section id="filosofia">
+    <div class="manifesto-grid">
+      <div class="manifesto-item reveal-up">
+        <div class="mono manifesto-num">/01</div>
+        <p class="manifesto-text">
+          <span class="lang-es-el">LA EXPERIENCIA DIGITAL<br/>EMPIEZA ANTES<br/>DEL CLUB.</span>
+          <span class="lang-en-el">THE DIGITAL EXPERIENCE<br/>STARTS BEFORE<br/>THE CLUB.</span>
+        </p>
+      </div>
+      <div class="manifesto-item reveal-up">
+        <div class="mono manifesto-num">/02</div>
+        <p class="manifesto-text">
+          <span class="lang-es-el">MENOS FRICCIÓN.<br/>MÁS IMPACTO.<br/>MÁS BOOKINGS.</span>
+          <span class="lang-en-el">LESS FRICTION.<br/>MORE IMPACT.<br/>MORE BOOKINGS.</span>
+        </p>
+      </div>
+      <div class="manifesto-item reveal-up">
+        <div class="mono manifesto-num">/03</div>
+        <p class="manifesto-text">
+          <span class="lang-es-el">TU MÚSICA YA SUENA<br/>PROFESIONAL.<br/>TU WEB TAMBIÉN.</span>
+          <span class="lang-en-el">YOUR MUSIC ALREADY<br/>SOUNDS PROFESSIONAL.<br/>YOUR WEB SHOULD TOO.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       07 — PLANES
+  ═══════════════════════════════════════ -->
+  <section id="planes">
+    <div class="section-label mono reveal">/05 — PRICING_SYSTEM</div>
+    <h2 class="section-title reveal-up">
+      <span class="lang-es-el">Elegí tu<br/>arquitectura.</span>
+      <span class="lang-en-el">Choose your<br/>architecture.</span>
+    </h2>
+    <p class="section-sub mono reveal">
+      <span class="t" data-es="Tres niveles. Un solo estándar de calidad." data-en="Three tiers. One standard of quality.">Tres niveles. Un solo estándar de calidad.</span>
+    </p>
+
+    <div class="planes-grid">
+      <!-- ESSENTIAL -->
+      <div class="plan-card reveal" data-plan="essential">
+        <div class="plan-top">
+          <div class="plan-label mono">[ESSENTIAL]</div>
+          <div class="plan-price">
+            <span class="price-usd mono">USD</span>
+            <span class="price-num">250</span>
+            <span class="price-dom mono">
+              <span class="t" data-es="+ Dominio" data-en="+ Domain">+ Dominio</span>
+            </span>
+          </div>
+          <h3 class="plan-name"><span class="t" data-es="Identidad & Presencia" data-en="Identity & Presence">Identidad & Presencia</span></h3>
+          <p class="plan-desc mono"><span class="t" data-es="El punto de entrada profesional." data-en="The professional entry point.">El punto de entrada profesional.</span></p>
+        </div>
+        <ul class="plan-list mono">
+          <li><span class="pi">▸</span> <span class="t" data-es="Landing Page custom" data-en="Custom Landing Page">Landing Page custom</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Mobile-first responsive" data-en="Mobile-first responsive">Mobile-first responsive</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Identidad visual del artista" data-en="Artist visual identity">Identidad visual del artista</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Redes sociales integradas" data-en="Social media integrated">Redes sociales integradas</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="SEO básico on-page" data-en="Basic on-page SEO">SEO básico on-page</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Open Graph para redes" data-en="Open Graph for social">Open Graph para redes</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Deploy + dominio configurado" data-en="Deploy + domain configured">Deploy + dominio configurado</span></li>
+          <li class="plan-list-dim"><span>—</span> Booking system</li>
+          <li class="plan-list-dim"><span>—</span> Technical Rider</li>
+          <li class="plan-list-dim"><span>—</span> Multi-language</li>
+        </ul>
+        <a href="#cta" class="btn-plan mono"><span class="t" data-es="EMPEZAR →" data-en="GET STARTED →">EMPEZAR →</span></a>
+      </div>
+
+      <!-- PROFESSIONAL -->
+      <div class="plan-card plan-featured reveal" data-plan="professional">
+        <div class="plan-glow" aria-hidden="true"></div>
+        <div class="plan-badge mono">
+          <span class="t" data-es="RECOMENDADO" data-en="RECOMMENDED">RECOMENDADO</span>
+        </div>
+        <div class="plan-top">
+          <div class="plan-label mono">[PROFESSIONAL]</div>
+          <div class="plan-price">
+            <span class="price-usd mono">USD</span>
+            <span class="price-num">350</span>
+            <span class="price-dom mono"><span class="t" data-es="+ Dominio" data-en="+ Domain">+ Dominio</span></span>
+          </div>
+          <h3 class="plan-name"><span class="t" data-es="Sistema Profesional" data-en="Professional System">Sistema Profesional</span></h3>
+          <p class="plan-desc mono"><span class="t" data-es="Para artistas en crecimiento activo." data-en="For actively growing artists.">Para artistas en crecimiento activo.</span></p>
+        </div>
+        <ul class="plan-list mono">
+          <li><span class="pi">▸</span> <span class="t" data-es="Todo lo del Essential" data-en="Everything in Essential">Todo lo del Essential</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="EPK multi-sección completo" data-en="Full multi-section EPK">EPK multi-sección completo</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Booking system integrado" data-en="Integrated booking system">Booking system integrado</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Technical Rider interactivo" data-en="Interactive Technical Rider">Technical Rider interactivo</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="SoundCloud player nativo" data-en="Native SoundCloud player">SoundCloud player nativo</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Galería de fotos y gigs" data-en="Photo & gig gallery">Galería de fotos y gigs</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="SEO técnico avanzado" data-en="Advanced technical SEO">SEO técnico avanzado</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Optimización de velocidad" data-en="Speed optimization">Optimización de velocidad</span></li>
+          <li class="plan-list-dim"><span>—</span> Multi-language</li>
+          <li class="plan-list-dim"><span>—</span> CDN Global</li>
+        </ul>
+        <a href="#cta" class="btn-plan btn-plan-blue mono"><span class="t" data-es="EMPEZAR →" data-en="GET STARTED →">EMPEZAR →</span></a>
+      </div>
+
+      <!-- GLOBAL -->
+      <div class="plan-card reveal" data-plan="global">
+        <div class="plan-top">
+          <div class="plan-label mono">[GLOBAL]</div>
+          <div class="plan-price">
+            <span class="price-usd mono">USD</span>
+            <span class="price-num">550</span>
+            <span class="price-dom mono"><span class="t" data-es="Todo incluido" data-en="All included">Todo incluido</span></span>
+          </div>
+          <h3 class="plan-name"><span class="t" data-es="Solución Definitiva" data-en="Ultimate Solution">Solución Definitiva</span></h3>
+          <p class="plan-desc mono"><span class="t" data-es="Proyección internacional total." data-en="Full international reach.">Proyección internacional total.</span></p>
+        </div>
+        <ul class="plan-list mono">
+          <li><span class="pi">▸</span> <span class="t" data-es="Todo lo del Professional" data-en="Everything in Professional">Todo lo del Professional</span></li>
+          <li><span class="pi">▸</span> Multi-language ES / EN</li>
+          <li><span class="pi">▸</span> CDN Global</li>
+          <li><span class="pi">▸</span> Performance score 95+</li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Dominio incluido (1 año)" data-en="Domain included (1 year)">Dominio incluido (1 año)</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Soporte prioritario 30 días" data-en="Priority support 30 days">Soporte prioritario 30 días</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Actualizaciones ilimitadas" data-en="Unlimited updates">Actualizaciones ilimitadas</span></li>
+          <li><span class="pi">▸</span> Analytics dashboard</li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Estrategia de contenido" data-en="Content strategy">Estrategia de contenido</span></li>
+          <li><span class="pi">▸</span> <span class="t" data-es="Entrega en 10 días hábiles" data-en="Delivery in 10 business days">Entrega en 10 días hábiles</span></li>
+        </ul>
+        <a href="#cta" class="btn-plan mono"><span class="t" data-es="EMPEZAR →" data-en="GET STARTED →">EMPEZAR →</span></a>
+      </div>
+    </div>
+
+    <!-- FINANCIACIÓN -->
+    <div class="finance-block reveal">
+      <div class="finance-header mono">/ESTRUCTURA_FINANCIERA</div>
+      <div class="finance-options">
+        <div class="fin-opt">
+          <span class="mono fin-label">[PAGO_ÚNICO]</span>
+          <span class="fin-val"><span class="t" data-es="100% previo" data-en="100% upfront">100% previo</span></span>
+          <span class="mono fin-extra blue-text"><span class="t" data-es="SIN RECARGO" data-en="NO SURCHARGE">SIN RECARGO</span></span>
+        </div>
+        <div class="fin-opt">
+          <span class="mono fin-label">[2_PAGOS]</span>
+          <span class="fin-val">50% / 50%</span>
+          <span class="mono fin-extra">+ USD 50</span>
+        </div>
+        <div class="fin-opt">
+          <span class="mono fin-label">[3_PAGOS]</span>
+          <span class="fin-val">40% / 30% / 30%</span>
+          <span class="mono fin-extra">+ USD 100</span>
+        </div>
+      </div>
+      <p class="finance-note mono">
+        <span class="t" data-es="* Dominio no incluido en planes ESSENTIAL y PROFESSIONAL (aprox. USD 10–15/año)" data-en="* Domain not included in ESSENTIAL and PROFESSIONAL plans (approx. USD 10–15/year)">* Dominio no incluido en planes ESSENTIAL y PROFESSIONAL (aprox. USD 10–15/año)</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       08 — CTA
+  ═══════════════════════════════════════ -->
+  <section id="cta">
+    <div class="cta-bg" aria-hidden="true">
+      <div class="cta-overlay"></div>
+    </div>
+    <div class="cta-grid-lines" aria-hidden="true"></div>
+    <div class="cta-inner reveal-up">
+      <div class="mono cta-label">/06 — READY_TO_UPGRADE</div>
+      <h2 class="cta-title">
+        <span class="lang-es-el">¿LISTO PARA<br/>UPGRADEAR<br/>TU IDENTIDAD<br/>DIGITAL?</span>
+        <span class="lang-en-el">READY<br/>TO UPGRADE<br/>YOUR DIGITAL<br/>IDENTITY?</span>
+      </h2>
+      <p class="cta-sub mono"><span class="t" data-es="Respondemos en menos de 24hs. Sin burocracia." data-en="We respond in under 24h. No bureaucracy.">Respondemos en menos de 24hs. Sin burocracia.</span></p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20info%20sobre%20un%20EPK%20con%2011.04_DIGITAL" class="btn-primary" target="_blank" rel="noopener">WHATSAPP →</a>
+        <a href="mailto:hola@1104digital.com" class="btn-outline">EMAIL</a>
+      </div>
+      <div class="cta-links mono">
+        <a href="https://instagram.com/11.04.digital" target="_blank" rel="noopener">@11.04.digital</a>
+        <span>·</span>
+        <a href="mailto:hola@1104digital.com">hola@1104digital.com</a>
+      </div>
+    </div>
+    <div class="cta-bg-text" aria-hidden="true">EPK</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-centered-wrap">
+      <p class="footer-tagline mono">
+        11.04_DIGITAL — MARTINA GRECO.<br/>
+        <span class="t" data-es="Diseño técnico, visión social y muchas ganas de que las cosas pasen." data-en="Technical design, social vision and the drive to make things happen.">Diseño técnico, visión social y muchas ganas de que las cosas pasen.</span>
+      </p>
+      <div class="footer-nav mono">
+        <a href="#problema">/SISTEMA</a>
+        <span>·</span>
+        <a href="#portfolio">/PORTFOLIO</a>
+        <span>·</span>
+        <a href="#planes">/PLANES</a>
+        <span>·</span>
+        <a href="#cta">/CONTACTO</a>
+      </div>
+      <div class="footer-credits mono">
+        <img src="Logo/Logo.png" alt="11.04 DIGITAL" class="footer-logo"/>
+        <span>/EPK /WEB /SYSTEM &nbsp;·&nbsp; BA, AR &nbsp;·&nbsp; <span id="yr"></span></span>
+        <span>11.04_DIGITAL®</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SYSTEM COMPONENT DETAIL MODAL -->
+  <div id="feat-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar modal">✕</button>
+      <div class="modal-header mono">
+        <span class="modal-badge" id="modal-code">[SYSTEM_COMPONENT]</span>
+        <span>11.04_DIGITAL // EPK_INFRASTRUCTURE</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-graphic-col">
+          <div id="modal-graphic-container"></div>
+        </div>
+        <div class="modal-info-col">
+          <h3 id="modal-title" class="modal-title-text">SoundCloud Player</h3>
+          
+          <div class="modal-desc-block">
+            <h4 class="mono">/BENEFITS</h4>
+            <p id="modal-benefits" class="mono"></p>
+          </div>
+          
+          <div class="modal-tech-block">
+            <h4 class="mono">/TECHNICAL_SPECIFICATIONS</h4>
+            <ul id="modal-specs" class="mono"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
