@@ -1758,9 +1758,27 @@ section { padding: 160px 8% 140px; position: relative; }
   .burger { display: flex; }
   .lang-switcher-mobile { display: flex; }
   
-  #hero { padding: 120px 6% 80px; }
-  .hero-meta { top: 80px; }
+  #hero { padding: 140px 6% 80px; }
+  .hero-meta { top: 100px; }
+  
+  /* Fix parallax background attachment scaling on mobile Chrome/Safari */
+  .hero-bg, .scene-bg, .cta-bg, .editorial-bg {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  
+  .editorial-bg {
+    background-position: 68% center !important; /* Crop focused on artist visual */
+  }
+
   .hero-title { font-size: clamp(2rem, 9vw, 4.2rem); }
+  .hero-sub {
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .hero-coords { display: none; }
   .br-d { display: none; }
   .hero-mockup-composition {
@@ -1781,9 +1799,79 @@ section { padding: 160px 8% 140px; position: relative; }
     transform: translate(80%, 18%);
   }
 
+  /* Compact marquees for smaller mobile viewports */
+  .marquee-strip {
+    padding: 8px 0;
+  }
+  .marquee-inner span, .ticker-wrap span {
+    font-size: 0.55rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
   .section-title { font-size: clamp(2.2rem, 10vw, 4.2rem); margin-bottom: 40px; }
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .feat-card-wide { grid-column: span 2; }
+
+  /* Transform System Features into a clean horizontal list view on Mobile */
+  .features-grid {
+    grid-template-columns: 1fr;
+    background: transparent;
+    border: none;
+    gap: 0;
+  }
+  .feat-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 22px 16px;
+    border-bottom: 1px solid var(--border);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: var(--black);
+    transform: none !important;
+  }
+  .feat-card-wide {
+    grid-column: span 1;
+  }
+  .feat-icon {
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+  .feat-card h3 {
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    flex-grow: 1;
+    text-align: left;
+  }
+  .feat-desc {
+    display: none; /* Hide snippet on mobile list to let popup present details */
+  }
+
+  /* Modal Popup responsive details to prevent image/graphic distortion */
+  .modal-card {
+    width: 95%;
+    padding: 24px;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  .modal-header {
+    padding-bottom: 12px;
+  }
+  .modal-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .modal-graphic-col {
+    height: 180px;
+  }
+  .modal-info-col {
+    gap: 16px;
+  }
+  .modal-title-text {
+    font-size: 1.6rem;
+  }
+
   .scene-discount { font-size: clamp(4.5rem, 24vw, 8.5rem); }
   .cta-title { font-size: clamp(2.5rem, 12vw, 6.5rem); }
   .cta-bg-text { display: none; }
@@ -1792,8 +1880,19 @@ section { padding: 160px 8% 140px; position: relative; }
   .finance-block { padding: 28px 20px; }
   .manifesto-item { padding: 64px 32px; }
   .port-img-wrap { aspect-ratio: 16/9 !important; }
+  
   .video-showcase-split { padding: 24px 16px; gap: 32px; }
-  .video-wrap-split { max-height: 50vh; }
+  
+  /* Make video scroll fill the full mobile width */
+  .video-wrap-split {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9/16;
+    max-height: 60vh;
+    border-radius: 4px;
+  }
+  
   .metrics-grid { gap: 12px; }
   .metric-card { padding-left: 8px; }
   #footer { padding: 60px 6% 32px; }
