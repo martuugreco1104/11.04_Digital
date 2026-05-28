@@ -1844,3 +1844,48 @@ section { padding: 160px 8% 140px; position: relative; }
     box-shadow: 0 0 8px var(--blue-glow);
   }
 }
+
+/* ══════════════ TECHNICAL MIXER DECK ANIME (FEAT MODAL) ══════════════ */
+@keyframes knobRotate1 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(50deg); }
+}
+@keyframes knobRotate2 {
+  0%, 100% { transform: rotate(50deg); }
+  50% { transform: rotate(90deg); }
+}
+@keyframes knobRotate3 {
+  0%, 100% { transform: rotate(-30deg); }
+  50% { transform: rotate(20deg); }
+}
+@keyframes faderSlide1 {
+  0%, 100% { top: 40%; }
+  50% { top: 15%; }
+}
+@keyframes faderSlide2 {
+  0%, 100% { top: 25%; }
+  50% { top: 75%; }
+}
+@keyframes faderSlide3 {
+  0%, 100% { top: 60%; }
+  50% { top: 30%; }
+}
+
+.modal-overlay.active .mock-mixer-channel:nth-child(1) .mock-knob {
+  animation: knobRotate1 5s ease-in-out infinite alternate;
+}
+.modal-overlay.active .mock-mixer-channel:nth-child(2) .mock-knob {
+  animation: knobRotate2 6s ease-in-out infinite alternate;
+}
+.modal-overlay.active .mock-mixer-channel:nth-child(3) .mock-knob {
+  animation: knobRotate3 4.5s ease-in-out infinite alternate;
+}
+.modal-overlay.active .mock-mixer-channel:nth-child(1) .mock-fader-knob {
+  animation: faderSlide1 4s ease-in-out infinite alternate;
+}
+.modal-overlay.active .mock-mixer-channel:nth-child(2) .mock-fader-knob {
+  animation: faderSlide2 5.5s ease-in-out infinite alternate;
+}
+.modal-overlay.active .mock-mixer-channel:nth-child(3) .mock-fader-knob {
+  animation: faderSlide3 3.5s ease-in-out infinite alternate;
+}

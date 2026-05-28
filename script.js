@@ -71,6 +71,48 @@ const html = document.documentElement;
  * toggle lang-btn active state, persist to localStorage.
  * Zero CLS: we use opacity+max-height in CSS, not display:none.
  */
+let currentPlan = null; // Global tracker for selected plan
+
+function updateContactLinks() {
+  const whatsappBtn = document.querySelector('.cta-btns .btn-primary');
+  const emailBtn = document.querySelector('.cta-btns .btn-outline');
+  if (!whatsappBtn || !emailBtn) return;
+
+  const lang = html.classList.contains('lang-en') ? 'en' : 'es';
+  const phone = '5491100000000'; // Target phone
+
+  let text = '';
+  let mailSubject = '';
+  let mailBody = '';
+
+  if (lang === 'es') {
+    if (currentPlan) {
+      const planName = currentPlan.toUpperCase();
+      text = `Hola, quiero solicitar el plan [${planName}] de 11.04_DIGITAL y comenzar a potenciar mi identidad digital.`;
+      mailSubject = `Solicitud de Plan ${planName} — 11.04_DIGITAL`;
+      mailBody = `Hola,\n\nQuiero solicitar más información o iniciar la contratación del plan [${planName}] para mi EPK interactivo.\n\nSaludos!`;
+    } else {
+      text = 'Hola, quiero info sobre un EPK con 11.04_DIGITAL';
+      mailSubject = 'Consulta de EPK interactivo — 11.04_DIGITAL';
+      mailBody = 'Hola,\n\nQuiero solicitar información sobre el sistema de EPK interactivo y webs de alto rendimiento.\n\nSaludos!';
+    }
+  } else {
+    if (currentPlan) {
+      const planName = currentPlan.toUpperCase();
+      text = `Hi, I would like to request the [${planName}] plan from 11.04_DIGITAL to upgrade my digital identity.`;
+      mailSubject = `Plan Request ${planName} — 11.04_DIGITAL`;
+      mailBody = `Hi,\n\nI would like to request more information or start hiring the [${planName}] plan for my interactive EPK.\n\nBest regards!`;
+    } else {
+      text = 'Hi, I would like info about an EPK with 11.04_DIGITAL';
+      mailSubject = 'Interactive EPK inquiry — 11.04_DIGITAL';
+      mailBody = 'Hi,\n\nI would like to request information about the interactive EPK system and high-performance websites.\n\nBest regards!';
+    }
+  }
+
+  whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  emailBtn.href = `mailto:hola@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+}
+
 function setLang(lang) {
   // 1. Toggle class on <html>
   html.classList.remove('lang-es', 'lang-en');
@@ -89,6 +131,15 @@ function setLang(lang) {
 
   // 4. Persist preference
   try { localStorage.setItem('1104_lang', lang); } catch (e) {}
+
+  // 5. Update close button aria-label for accessibility
+  const modalClose = document.getElementById('modal-close');
+  if (modalClose) {
+    modalClose.setAttribute('aria-label', lang === 'en' ? 'Close modal' : 'Cerrar modal');
+  }
+
+  // 6. Update WhatsApp and Email links text dynamically
+  updateContactLinks();
 }
 
 // Wire up all lang buttons (desktop + mobile)
@@ -102,6 +153,17 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 // Init language from localStorage or default ES
 const savedLang = (() => { try { return localStorage.getItem('1104_lang'); } catch(e) { return null; } })();
 setLang(savedLang === 'en' ? 'en' : 'es');
+
+// Wire up plan buttons for dynamic checkout text
+document.querySelectorAll('.plan-card .btn-plan').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.plan-card');
+    if (card) {
+      currentPlan = card.dataset.plan || null;
+      updateContactLinks();
+    }
+  });
+});
 
 // ── SMOOTH ANCHOR ─────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(link => {
