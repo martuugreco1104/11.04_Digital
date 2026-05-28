@@ -111,6 +111,12 @@ function updateContactLinks() {
 
   whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   emailBtn.href = `mailto:hola@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+  // Dynamic Form Plan selection sync
+  const formPlan = document.getElementById('form-plan');
+  if (formPlan) {
+    formPlan.value = currentPlan || '';
+  }
 }
 
 function setLang(lang) {
@@ -138,7 +144,25 @@ function setLang(lang) {
     modalClose.setAttribute('aria-label', lang === 'en' ? 'Close modal' : 'Cerrar modal');
   }
 
-  // 6. Update WhatsApp and Email links text dynamically
+  // 6. Translate form placeholders dynamically
+  const formName = document.getElementById('form-name');
+  const formEmail = document.getElementById('form-email');
+  const formArtist = document.getElementById('form-artist');
+  const formMessage = document.getElementById('form-message');
+  
+  if (lang === 'es') {
+    if (formName) formName.placeholder = 'Ej: Alejo';
+    if (formEmail) formEmail.placeholder = 'Ej: alejo@artist.com';
+    if (formArtist) formArtist.placeholder = 'Ej: @alejo_v';
+    if (formMessage) formMessage.placeholder = 'Cuéntanos sobre tu música y tu proyecto...';
+  } else {
+    if (formName) formName.placeholder = 'e.g. Alejo';
+    if (formEmail) formEmail.placeholder = 'e.g. alejo@artist.com';
+    if (formArtist) formArtist.placeholder = 'e.g. @alejo_v';
+    if (formMessage) formMessage.placeholder = 'Tell us about your music and project...';
+  }
+
+  // 7. Update WhatsApp and Email links text dynamically
   updateContactLinks();
 }
 

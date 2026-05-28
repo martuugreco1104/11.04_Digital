@@ -1112,11 +1112,12 @@ section { padding: 160px 8% 140px; position: relative; }
 .cta-label { font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
 .cta-title {
   font-family: var(--font-head);
-  font-size: clamp(3.2rem, 9vw, 7.8rem);
-  line-height: 1.25; /* Editorial line-height to completely prevent overlap */
+  font-size: clamp(2.8rem, 11vw, 9rem); /* Perfect viewport-width sizing to span fully across the screen */
+  line-height: 1.05; /* Tight editorial brutalist leading */
   letter-spacing: -0.03em;
   text-transform: uppercase;
   margin-bottom: 40px;
+  width: 100%;
 }
 .cta-sub { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--grey); margin-bottom: 40px; opacity: 0.45; }
 .cta-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
@@ -2029,3 +2030,88 @@ section { padding: 160px 8% 140px; position: relative; }
 .modal-overlay.active .mock-mixer-channel:nth-child(3) .mock-fader-knob {
   animation: faderSlide3 3.5s ease-in-out infinite alternate;
 }
+
+/* ══════════════ BRUTALIST CONTACT FORM ══════════════ */
+.brutalist-form {
+  width: 100%;
+  max-width: 680px;
+  margin: 40px 0 56px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--blue);
+  font-weight: 700;
+  text-align: left;
+}
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  background: rgba(255,255,255,0.01);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 14px 18px;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  width: 100%;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 15px var(--blue-glow);
+  background: rgba(0, 60, 255, 0.02);
+}
+.form-group select option {
+  background: var(--black);
+  color: var(--white);
+}
+.btn-submit {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  padding: 16px 36px;
+  border: 1px solid var(--blue);
+  cursor: pointer;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.btn-submit:hover {
+  box-shadow: 0 0 30px var(--blue-glow);
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  .btn-submit {
+    width: 100%;
+    text-align: center;
+  }
+}
+

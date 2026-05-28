@@ -627,6 +627,41 @@
         <span class="lang-en-el">READY<br/>TO UPGRADE<br/>YOUR DIGITAL<br/>IDENTITY?</span>
       </h2>
       <p class="cta-sub mono"><span class="t" data-es="Respondemos en menos de 24hs." data-en="We respond in under 24h.">Respondemos en menos de 24hs.</span></p>
+      
+      <!-- TRIAL BRUTALIST CONTACT FORM -->
+      <form id="contact-form" class="brutalist-form mono" onsubmit="event.preventDefault(); alert(document.documentElement.classList.contains('lang-en') ? 'Inquiry submitted (Test Mode). We will contact you in under 24h!' : 'Consulta enviada (Modo de Prueba). ¡Nos contactaremos en menos de 24hs!');">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="form-name"><span class="t" data-es="/NOMBRE" data-en="/NAME">/NOMBRE</span></label>
+            <input type="text" id="form-name" placeholder="Ej: Alejo" required />
+          </div>
+          <div class="form-group">
+            <label for="form-email"><span class="t" data-es="/EMAIL" data-en="/EMAIL">/EMAIL</span></label>
+            <input type="email" id="form-email" placeholder="Ej: alejo@artist.com" required />
+          </div>
+          <div class="form-group">
+            <label for="form-artist"><span class="t" data-es="/ARTISTA_INSTAGRAM" data-en="/ARTIST_INSTAGRAM">/ARTISTA_INSTAGRAM</span></label>
+            <input type="text" id="form-artist" placeholder="@username" />
+          </div>
+          <div class="form-group">
+            <label for="form-plan"><span class="t" data-es="/SELECCIONAR_PLAN" data-en="/SELECT_PLAN">/SELECCIONAR_PLAN</span></label>
+            <select id="form-plan">
+              <option value="" class="t" data-es="Seleccionar plan..." data-en="Select plan...">Seleccionar plan...</option>
+              <option value="essential">[ESSENTIAL] - USD 250</option>
+              <option value="professional">[PROFESSIONAL] - USD 350</option>
+              <option value="global">[GLOBAL] - USD 550</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="form-message"><span class="t" data-es="/MENSAJE" data-en="/MESSAGE">/MENSAJE</span></label>
+          <textarea id="form-message" rows="4" placeholder="Cuéntanos sobre tu música y tu proyecto..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <span class="t" data-es="ENVIAR CONSULTA →" data-en="SUBMIT INQUIRY →">ENVIAR CONSULTA →</span>
+        </button>
+      </form>
+
       <div class="cta-btns">
         <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20info%20sobre%20un%20EPK%20con%2011.04_DIGITAL" class="btn-primary" target="_blank" rel="noopener">WHATSAPP →</a>
         <a href="mailto:hola@1104digital.com" class="btn-outline">EMAIL</a>
