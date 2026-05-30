@@ -249,14 +249,14 @@ const COMPONENT_DATA = {
     code: "SYS_COMP_03",
     title: { es: "Technical Rider", en: "Technical Rider" },
     benefits: {
-      es: "Evita malentendidos en cabina. Tu ficha de equipamiento técnico e input list digital e interactivo se visualizan con un solo click. Ahorra tiempo en la producción del festival o club.",
+      es: "Evita contratiempos de producción de último minuto. Tu ficha técnica e input list digital modular se despliegan en un solo clic, garantizando soporte técnico total en cabinas de clubes y festivales.",
       en: "Avoids booth misunderstandings. Your digital interactive technical equipment sheet and input list are displayed with a single click. Saves massive coordination time with festival and club crews."
     },
     specs: {
       es: [
-        "Visualizador e input-list interactivo de consolas Pioneer y CDJs.",
-        "Descarga directa en formato PDF vectorizado de alta resolución.",
-        "Estructura modular adaptable según el set (Live / DJ Set)."
+        "Esquema interactivo de cabina y ruteo de señales.",
+        "Exportación directa en PDF vectorial de alta fidelidad.",
+        "Compatibilidad total con riders de audio complejos y configuraciones híbridas (Live / DJ Set)."
       ],
       en: [
         "Interactive input-list and stage plot visualizer for CDJs & Mixers.",
@@ -268,16 +268,16 @@ const COMPONENT_DATA = {
   },
   photos: {
     code: "SYS_COMP_04",
-    title: { es: "Press Photos", en: "Press Photos" },
+    title: { es: "Press Assets & Media Kit", en: "Press Assets & Media Kit" },
     benefits: {
-      es: "Brinda material de prensa de calidad para flyeres y cartelería. Galería optimizada en cuadrícula donde agencias o promotores pueden descargar tus fotos oficiales en alta resolución con un solo toque.",
-      en: "Provides top-quality press assets for flyers and billings. Optimized grid gallery where agencies and promoters can download your high-resolution official photos with a single tap."
+      es: "Proporciona a agencias de booking y promotores assets editoriales de alta calidad listos para lineups, prensa y material promocional digital o físico.",
+      en: "Provides booking agencies and promoters with high-quality editorial assets ready for festival lineups, press coverage, and digital or physical promo materials."
     },
     specs: {
       es: [
-        "Galería de imágenes optimizada con lazy-loading progresivo.",
-        "Descarga directa zip de alta resolución (300 DPI) para imprenta.",
-        "Visualizador inmersivo a pantalla completa."
+        "Galería optimizada con carga progresiva.",
+        "Media Pack descargable en alta resolución (300 DPI y perfiles CMYK/sRGB).",
+        "Visualizador integrado sin impacto en rendimiento."
       ],
       en: [
         "Optimized image gallery with progressive lazy-loading.",
@@ -289,10 +289,10 @@ const COMPONENT_DATA = {
   },
   analytics: {
     code: "SYS_COMP_05",
-    title: { es: "Analytics & Tracking", en: "Analytics & Tracking" },
+    title: { es: "Booking Analytics & Telemetry", en: "Booking Analytics & Telemetry" },
     benefits: {
-      es: "Descubre quién tiene interés en ti. Monitorea en tiempo real qué agencias, bookers o promotores abren tu EPK, cuánto tiempo pasan escuchando tus sets y desde qué ciudades del mundo te buscan.",
-      en: "Discover who is interested in you. Monitor in real time which agencies, bookers, or promoters open your EPK, how much time they spend listening to your sets, and from which cities around the world."
+      es: "Descubre quién tiene interés en ti. Monitorea el interés real sobre tu perfil. Recibe telemetría en tiempo real sobre qué agencias de booking, promotores y labels abren tu EPK, cuánto tiempo pasan en él y desde qué ciudades del mundo te buscan.",
+      en: "Discover who is interested in you. Monitor real engagement on your profile. Receive real-time telemetry on which booking agencies, promoters, and labels open your EPK, their dwell time, and which cities they are scouting from."
     },
     specs: {
       es: [
