@@ -80,10 +80,10 @@ ul { list-style: none; }
   overflow: hidden;
 }
 /* Default: ES visible, EN hidden */
-.lang-es .lang-en-el { opacity: 0; max-height: 0; pointer-events: none; }
-.lang-es .lang-es-el { opacity: 1; max-height: 999px; }
-.lang-en .lang-es-el { opacity: 0; max-height: 0; pointer-events: none; }
-.lang-en .lang-en-el { opacity: 1; max-height: 999px; }
+.lang-es .lang-en-el { display: none !important; }
+.lang-es .lang-es-el { display: block !important; }
+.lang-en .lang-es-el { display: none !important; }
+.lang-en .lang-en-el { display: block !important; }
 
 /* Inline spans inside hero-sub — block display eliminates inter-element whitespace */
 .hero-sub .lang-es-el,

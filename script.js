@@ -402,10 +402,28 @@ const modalBenefits = document.getElementById('modal-benefits');
 const modalSpecs = document.getElementById('modal-specs');
 const graphicContainer = document.getElementById('modal-graphic-container');
 
-// Open Modal logic
-document.querySelectorAll('.feat-card[data-comp]').forEach(card => {
-  card.addEventListener('click', () => {
-    const compKey = card.dataset.comp;
+// Open Modal + Accordion Toggle logic
+document.querySelectorAll('.facc-item[data-comp]').forEach(item => {
+  const btn = item.querySelector('.facc-head');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('is-open');
+
+    // 1. Accordion inline toggle
+    document.querySelectorAll('.facc-item').forEach(i => {
+      i.classList.remove('is-open');
+      const b = i.querySelector('.facc-head');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isOpen) {
+      item.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+
+    // 2. Open detailed technical modal
+    const compKey = item.dataset.comp;
     const data = COMPONENT_DATA[compKey];
     if (!data) return;
 
