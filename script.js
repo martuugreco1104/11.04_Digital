@@ -49,7 +49,8 @@ function closeNav() {
 }
 
 // ── YEAR ─────────────────────────────────────────────────────
-document.getElementById('yr').textContent = new Date().getFullYear();
+const yrEl = document.getElementById('yr');
+if (yrEl) yrEl.textContent = new Date().getFullYear();
 
 // ── PLAN CARD DIMMING ─────────────────────────────────────────
 const planCards = document.querySelectorAll('.plan-card');
@@ -74,9 +75,8 @@ const html = document.documentElement;
 let currentPlan = null; // Global tracker for selected plan
 
 function updateContactLinks() {
-  const whatsappBtn = document.querySelector('.cta-btns .btn-primary');
+  const whatsappBtn = document.querySelector('.btn-secondary-wa');
   const emailBtn = document.querySelector('.cta-btns .btn-outline');
-  if (!whatsappBtn || !emailBtn) return;
 
   const lang = html.classList.contains('lang-en') ? 'en' : 'es';
   const phone = '5491100000000'; // Target phone
@@ -109,13 +109,39 @@ function updateContactLinks() {
     }
   }
 
-  whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-  emailBtn.href = `mailto:hola@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  if (whatsappBtn) whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  if (emailBtn) emailBtn.href = `mailto:hola@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   // Dynamic Form Plan selection sync
   const formPlan = document.getElementById('form-plan');
   if (formPlan) {
     formPlan.value = currentPlan || '';
+  }
+
+  // Dynamic Custom Select Trigger visual text & color sync
+  const selectTrigger = document.getElementById('custom-select-trigger');
+  if (selectTrigger) {
+    const triggerTextSpan = selectTrigger.querySelector('.custom-select-trigger-text');
+    if (triggerTextSpan) {
+      if (currentPlan) {
+        const optionMap = {
+          essential: '[ESSENTIAL] — USD 250 / Identidad & Presencia',
+          professional: '[PROFESSIONAL] — USD 350 / Sistema de Alto Rendimiento',
+          global: '[GLOBAL] — USD 550 / Infraestructura Global'
+        };
+        const optionMapEn = {
+          essential: '[ESSENTIAL] — USD 250 / Identity & Presence',
+          professional: '[PROFESSIONAL] — USD 350 / Performance System',
+          global: '[GLOBAL] — USD 550 / Global Touring Infrastructure'
+        };
+        const nameMap = lang === 'en' ? optionMapEn : optionMap;
+        triggerTextSpan.textContent = (nameMap[currentPlan] || '[SELECCIONAR ARQUITECTURA ▾]');
+        selectTrigger.classList.add('has-value');
+      } else {
+        triggerTextSpan.textContent = '[SELECCIONAR ARQUITECTURA ▾]';
+        selectTrigger.classList.remove('has-value');
+      }
+    }
   }
 }
 
@@ -402,25 +428,14 @@ const modalBenefits = document.getElementById('modal-benefits');
 const modalSpecs = document.getElementById('modal-specs');
 const graphicContainer = document.getElementById('modal-graphic-container');
 
-// Open Modal + Accordion Toggle logic
+// Open Modal + Card Grid Toggle logic
 document.querySelectorAll('.facc-item[data-comp]').forEach(item => {
-  const btn = item.querySelector('.facc-head');
-  if (!btn) return;
-
-  btn.addEventListener('click', () => {
-    const isOpen = item.classList.contains('is-open');
-
-    // 1. Accordion inline toggle
+  item.addEventListener('click', () => {
+    // 1. Grid active indicator toggle
     document.querySelectorAll('.facc-item').forEach(i => {
       i.classList.remove('is-open');
-      const b = i.querySelector('.facc-head');
-      if (b) b.setAttribute('aria-expanded', 'false');
     });
-
-    if (!isOpen) {
-      item.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
+    item.classList.add('is-open');
 
     // 2. Open detailed technical modal
     const compKey = item.dataset.comp;
@@ -655,6 +670,46 @@ if (showcaseVideo) {
     };
     window.addEventListener('scroll', forcePlay, { passive: true });
     window.addEventListener('touchstart', forcePlay, { passive: true });
+  });
+}
+
+// ── CUSTOM SELECT DROPDOWN LOGIC ──
+const selectTrigger = document.getElementById('custom-select-trigger');
+const selectOptions = document.getElementById('custom-select-options');
+const hiddenPlanInput = document.getElementById('form-plan');
+
+if (selectTrigger && selectOptions) {
+  // Toggle dropdown on trigger click
+  selectTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = selectTrigger.getAttribute('aria-expanded') === 'true';
+    selectTrigger.setAttribute('aria-expanded', !isExpanded);
+    selectTrigger.classList.toggle('active', !isExpanded);
+    selectOptions.classList.toggle('show', !isExpanded);
+  });
+
+  // Handle option click
+  selectOptions.querySelectorAll('.custom-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const val = option.dataset.value;
+      
+      // Update global tracker
+      currentPlan = val;
+      updateContactLinks();
+
+      // Close dropdown
+      selectTrigger.setAttribute('aria-expanded', 'false');
+      selectTrigger.classList.remove('active');
+      selectOptions.classList.remove('show');
+    });
+  });
+
+  // Close dropdown on click outside
+  document.addEventListener('click', () => {
+    selectTrigger.setAttribute('aria-expanded', 'false');
+    selectTrigger.classList.remove('active');
+    selectOptions.classList.remove('show');
   });
 }
 
