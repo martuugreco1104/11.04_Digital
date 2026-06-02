@@ -32,7 +32,7 @@
   --blue-dim: rgba(0, 60, 255, 0.06);
   --blue-glow: rgba(0, 60, 255, 0.25);
   --blue-glow-lg: rgba(0, 60, 255, 0.1);
-  --white: #FFFFFF;
+  --white: #ececee; /* Softened premium silver white for optimal dark mode contrast */
   --grey: #8E8E93;
   --border: rgba(255, 255, 255, 0.08);
   --border-blue: rgba(0, 60, 255, 0.2);
@@ -54,6 +54,19 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   cursor: default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Enforce hardware-accelerated text-smoothing for colossal brutalist headers to prevent aliasing */
+.hero-title,
+.section-title,
+.port-name,
+.scene-title,
+.manifesto-text,
+.editorial-title,
+.cta-title {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -156,15 +169,15 @@ ul { list-style: none; }
 #nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 32px 6%;
+  padding: 24px 6%;
   border-bottom: 1px solid transparent;
-  transition: all 0.4s var(--ease);
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
 }
 #nav.scrolled {
   background: rgba(0,0,0,0.95);
   backdrop-filter: blur(24px);
   border-color: var(--border);
-  padding: 20px 6%;
+  padding: 24px 6%; /* Constant padding eliminates layout reflow during scroll transition */
 }
 .nav-brand img { width: 44px; height: 44px; border-radius: 50%; transition: transform 0.4s var(--ease); }
 .nav-brand:hover img { transform: rotate(8deg) scale(1.05); }
@@ -311,7 +324,7 @@ section { padding: 160px 8% 140px; position: relative; }
   position: absolute; 
   inset: 0; 
   z-index: 1; 
-  background-image: url('img/consola fondo.jpg');
+  background-image: url('img/consola fondo.webp');
   background-attachment: fixed; /* Native browser hardware-accelerated Parallax */
   background-size: cover;
   background-position: center;
@@ -404,7 +417,7 @@ section { padding: 160px 8% 140px; position: relative; }
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: var(--white);
   text-transform: uppercase;
   margin-bottom: 32px;
   -webkit-font-smoothing: antialiased;
@@ -917,7 +930,7 @@ section { padding: 160px 8% 140px; position: relative; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('img/consola fondo.jpg');
+  background-image: url('img/consola fondo.webp');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -1080,7 +1093,7 @@ section { padding: 160px 8% 140px; position: relative; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('img/Jansound Futura 2026 4 1.jpg');
+  background-image: url('img/Jansound Futura 2026 4 1.webp');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -1163,6 +1176,10 @@ section { padding: 160px 8% 140px; position: relative; }
   border: 1px solid var(--border);
   margin-bottom: 2px;
   perspective: 1200px; /* enables 3D children */
+}
+/* Pure CSS hover dimming effect for performance and zero main-thread JS overhead */
+.planes-grid:hover .plan-card:not(:hover) {
+  opacity: 0.45;
 }
 .plan-card {
   background: var(--black);
@@ -1285,7 +1302,7 @@ section { padding: 160px 8% 140px; position: relative; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('img/consola fondo 2.jpg');
+  background-image: url('img/consola fondo 2.webp');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -1308,7 +1325,7 @@ section { padding: 160px 8% 140px; position: relative; }
 .cta-title {
   font-family: var(--font-head);
   font-size: clamp(2.8rem, 11vw, 9rem);
-  line-height: 1.05;
+  line-height: 1.15; /* Balanced line-height prevents character and accent collisions */
   letter-spacing: -0.015em;
   text-transform: uppercase;
   margin-bottom: 40px;
@@ -1364,13 +1381,13 @@ section { padding: 160px 8% 140px; position: relative; }
   z-index: 2;
   flex-shrink: 0;
 }
-/* iPhone screen Ã¢â‚¬â€ uses aspect-ratio so video is never clipped */
+/* iPhone screen — uses aspect-ratio so video is never clipped */
 .iphone-screen {
   width: 100%;
   border-radius: 24px;
   overflow: hidden;
   background: #000;
-  aspect-ratio: 9 / 19;
+  aspect-ratio: 9 / 16;
 }
 .iphone-screen video {
   width: 100%;
@@ -1389,14 +1406,17 @@ section { padding: 160px 8% 140px; position: relative; }
 
 /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â FORM CONTAINER Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 .form-container {
-  background: #0a0a0a;
-  border: 1px solid rgba(255,255,255,0.07);
+  background: #0f0f12; /* Slightly lighter technical card background */
+  border: 1px solid rgba(0, 60, 255, 0.25); /* High-prestige technical Klein Blue border */
   border-radius: 2px;
   padding: 40px 44px;
   margin-bottom: 40px;
   position: relative;
   z-index: 3;
-  box-shadow: 0 2px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow: 
+    0 24px 80px rgba(0, 60, 255, 0.05), /* Subtle Klein Blue technical aura shadow */
+    0 2px 40px rgba(0, 0, 0, 0.7), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .brutalist-form label {
   display: block;
@@ -1478,7 +1498,7 @@ section { padding: 160px 8% 140px; position: relative; }
   width: 100%;
 }
 .custom-select-trigger {
-  background: rgba(255,255,255,0.03);
+  background: #141417; /* Symmetrical technical solid background */
   border: 1px solid rgba(255,255,255,0.1);
   color: rgba(255,255,255,0.7);
   font-family: var(--font-mono);
@@ -1538,33 +1558,7 @@ section { padding: 160px 8% 140px; position: relative; }
   font-weight: bold;
 }
 
-/* Visually Demoted WhatsApp Button directly below Submit */
-.form-secondary-actions {
-  display: flex;
-  width: 100%;
-  margin-top: 12px;
-}
-.btn-secondary-wa {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 52px;
-  padding: 0 36px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: border-color 0.4s var(--ease), color 0.4s var(--ease), opacity 0.4s var(--ease);
-}
-.btn-secondary-wa:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--white);
-  opacity: 1;
-}
+
 
 /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â FOOTER Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
 #footer {
@@ -1974,7 +1968,7 @@ section { padding: 160px 8% 140px; position: relative; }
   width: 100%;
   height: 100%;
   position: relative;
-  background-image: url('img/Jansound Futura 2026 4 1.jpg');
+  background-image: url('img/Jansound Futura 2026 4 1.webp');
   background-size: cover;
   background-position: center;
   filter: brightness(0.4) saturate(0.5);
@@ -2259,6 +2253,10 @@ section { padding: 160px 8% 140px; position: relative; }
     margin-right: auto;
     opacity: 0.55;
   }
+  .hero-sub .lang-es-el,
+  .hero-sub .lang-en-el {
+    text-align: center;
+  }
   .hero-coords { display: none; }
   .br-d { display: none; }
   .hero-mockup-composition {
@@ -2309,8 +2307,9 @@ section { padding: 160px 8% 140px; position: relative; }
     border: none;
     gap: 0;
   }
-  .feat-card {
+  .facc-item {
     display: flex;
+    flex-direction: row; /* Ensure row alignment for horizontal list view */
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
@@ -2321,22 +2320,24 @@ section { padding: 160px 8% 140px; position: relative; }
     border-right: none;
     background: var(--black);
     transform: none !important;
+    min-height: auto; /* override desktop min-height */
   }
-  .feat-card-wide {
-    grid-column: span 1;
-  }
-  .feat-icon {
+  .facc-header-row {
     margin-bottom: 0;
-    font-size: 1rem;
+    width: auto;
+    flex-shrink: 0;
   }
-  .feat-card h3 {
+  .facc-code {
+    display: none; /* Hide technical code in mobile list */
+  }
+  .facc-name {
     margin-bottom: 0;
     font-size: 1.05rem;
     flex-grow: 1;
     text-align: left;
   }
-  .feat-desc {
-    display: none; /* Hide snippet on mobile list to let popup present details */
+  .facc-desc {
+    display: none; /* Hide snippet on mobile list */
   }
 
   /* Modal Popup responsive details to prevent image/graphic distortion */
@@ -2551,15 +2552,15 @@ section { padding: 160px 8% 140px; position: relative; }
 .form-group input, 
 .form-group select, 
 .form-group textarea {
-  background: rgba(255,255,255,0.01);
-  border: 1px solid var(--border);
+  background: #141417; /* Solid technical input background for maximum visibility */
+  border: 1px solid rgba(255,255,255,0.1);
   color: var(--white);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   padding: 14px 18px;
   border-radius: 0;
   outline: none;
-  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease), background-color 0.4s var(--ease);
   width: 100%;
 }
 .form-group input::placeholder,
@@ -2641,6 +2642,24 @@ section { padding: 160px 8% 140px; position: relative; }
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
+}
+
+/* WHATSAPP BUTTON (BRUTALIST GREEN OUTLINE — TWIN TO EMAIL BUTTON) */
+.btn-wa {
+  border-color: #25D366 !important; /* Elegant green contour */
+}
+.btn-wa:hover {
+  border-color: #25D366 !important;
+  background: rgba(37, 211, 102, 0.06) !important; /* Soft green hover tint */
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.2); /* Premium glow */
+}
+
+/* Tactile mobile feedback support */
+@media (hover: none) {
+  .btn-wa:active {
+    background: rgba(37, 211, 102, 0.1) !important;
+    border-color: #25D366 !important;
+  }
 }
 
 

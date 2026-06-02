@@ -52,12 +52,7 @@ function closeNav() {
 const yrEl = document.getElementById('yr');
 if (yrEl) yrEl.textContent = new Date().getFullYear();
 
-// ── PLAN CARD DIMMING ─────────────────────────────────────────
-const planCards = document.querySelectorAll('.plan-card');
-planCards.forEach(card => {
-  card.addEventListener('mouseenter', () => planCards.forEach(c => c.style.opacity = c === card ? '1' : '0.45'));
-  card.addEventListener('mouseleave', () => planCards.forEach(c => c.style.opacity = '1'));
-});
+
 
 // ── HERO PARALLAX (handled natively via CSS background-attachment: fixed) ──
 
@@ -135,10 +130,10 @@ function updateContactLinks() {
           global: '[GLOBAL] — USD 550 / Global Touring Infrastructure'
         };
         const nameMap = lang === 'en' ? optionMapEn : optionMap;
-        triggerTextSpan.textContent = (nameMap[currentPlan] || '[SELECCIONAR ARQUITECTURA ▾]');
+        triggerTextSpan.textContent = (nameMap[currentPlan] || (lang === 'en' ? '[SELECT ARCHITECTURE ▾]' : '[SELECCIONAR ARQUITECTURA ▾]'));
         selectTrigger.classList.add('has-value');
       } else {
-        triggerTextSpan.textContent = '[SELECCIONAR ARQUITECTURA ▾]';
+        triggerTextSpan.textContent = lang === 'en' ? '[SELECT ARCHITECTURE ▾]' : '[SELECCIONAR ARQUITECTURA ▾]';
         selectTrigger.classList.remove('has-value');
       }
     }
