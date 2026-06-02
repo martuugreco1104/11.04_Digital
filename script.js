@@ -708,3 +708,70 @@ if (selectTrigger && selectOptions) {
   });
 }
 
+// ── FORM SUBMISSION LOGIC (AJAX integration with Formspree) ──
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('form-submit-btn');
+const submitText = submitBtn ? submitBtn.querySelector('.btn-submit-text') : null;
+const submitLoading = submitBtn ? submitBtn.querySelector('.btn-submit-loading') : null;
+const successMessage = document.getElementById('form-success');
+const errorMessage = document.getElementById('form-error');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Reset feedback messages
+    if (successMessage) successMessage.style.display = 'none';
+    if (errorMessage) errorMessage.style.display = 'none';
+
+    // Simple client-side validation check
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    // Toggle loading state
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitText) submitText.style.display = 'none';
+    if (submitLoading) submitLoading.style.display = 'inline-block';
+
+    const formData = new FormData(contactForm);
+    
+    // Sync current language prefix field
+    const formLang = document.getElementById('form-lang');
+    if (formLang) {
+      formLang.value = document.documentElement.classList.contains('lang-en') ? 'en' : 'es';
+    }
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // Success
+        if (successMessage) successMessage.style.display = 'block';
+        contactForm.reset();
+        // Reset custom plan select text
+        currentPlan = null;
+        updateContactLinks();
+      } else {
+        // Error from Formspree
+        if (errorMessage) errorMessage.style.display = 'block';
+      }
+    } catch (err) {
+      // Network/Connection error
+      if (errorMessage) errorMessage.style.display = 'block';
+    } finally {
+      // Reset button state
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitText) submitText.style.display = 'inline';
+      if (submitLoading) submitLoading.style.display = 'none';
+    }
+  });
+}
+
