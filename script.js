@@ -105,7 +105,7 @@ function updateContactLinks() {
   }
 
   if (whatsappBtn) whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-  if (emailBtn) emailBtn.href = `mailto:hola@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  if (emailBtn) emailBtn.href = `mailto:contacto@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   // Dynamic Form Plan selection sync
   const formPlan = document.getElementById('form-plan');
