@@ -2653,4 +2653,73 @@ section { padding: 160px 8% 140px; position: relative; }
   }
 }
 
+/* ── CUSTOM CURSOR (PRO KLEIN BLUE AESTHETIC) ── */
+@media (pointer: fine) {
+  /* Hide native cursor for a clean custom implementation */
+  body, html, a, button, select, input, textarea, [role="button"], .custom-option {
+    cursor: none !important;
+  }
+
+  .custom-cursor {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--blue);
+    border-radius: 50% !important; /* Force exact circle */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    transition: 
+      width 0.25s var(--ease), 
+      height 0.25s var(--ease), 
+      background-color 0.25s var(--ease), 
+      border-color 0.25s var(--ease), 
+      box-shadow 0.25s var(--ease);
+    box-shadow: 0 0 12px rgba(0, 60, 255, 0.25);
+    will-change: transform;
+    display: none; /* JS will display this on mousemove to avoid (0,0) jump */
+  }
+
+  .custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--blue);
+    border-radius: 50% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10001;
+    transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+    will-change: transform;
+    display: none;
+  }
+
+  /* Hover States on Interactive Elements */
+  .custom-cursor.hover {
+    width: 52px;
+    height: 52px;
+    background-color: rgba(0, 60, 255, 0.08);
+    border-color: rgba(0, 60, 255, 0.9);
+    box-shadow: 
+      0 0 30px rgba(0, 60, 255, 0.45),
+      inset 0 0 12px rgba(0, 60, 255, 0.15);
+  }
+
+  .custom-cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(0.5); /* Shrink dot slightly for clean focus */
+    background-color: var(--white);
+  }
+}
+
+/* Fallback: Hide custom elements completely on tactile viewports */
+@media (pointer: coarse) {
+  .custom-cursor, .custom-cursor-dot {
+    display: none !important;
+  }
+}
+
 
