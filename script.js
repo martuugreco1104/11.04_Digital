@@ -69,8 +69,32 @@ const html = document.documentElement;
  */
 let currentPlan = null; // Global tracker for selected plan
 
+const SHOWCASE_ARTISTS = {
+  jansound: { label: 'JANSOUND', url: 'https://jansound.com' },
+  alejo: { label: 'ALEJO V', url: 'https://alejo-v.com' },
+  dante: { label: 'DANTE TOTO', url: 'https://martuugreco1104.github.io/dantetotoEPK/' }
+};
+let activeShowcaseArtist = 'jansound';
+let manualShowcaseLockUntil = 0;
+
+function syncShowcaseLiveLink() {
+  const liveLink = document.getElementById('showcase-live-link');
+  const meta = SHOWCASE_ARTISTS[activeShowcaseArtist];
+  if (!liveLink || !meta) return;
+  liveLink.href = meta.url;
+  const lang = document.documentElement.classList.contains('lang-en') ? 'en' : 'es';
+  const span = liveLink.querySelector('span');
+  const textEs = `ABRIR EPK EN VIVO: ${meta.label} ↗`;
+  const textEn = `OPEN LIVE EPK: ${meta.label} ↗`;
+  if (span) {
+    span.dataset.es = textEs;
+    span.dataset.en = textEn;
+    span.textContent = lang === 'en' ? textEn : textEs;
+  }
+}
+
 function updateContactLinks() {
-  const whatsappBtn = document.querySelector('.btn-secondary-wa');
+  const whatsappBtns = document.querySelectorAll('.btn-secondary-wa');
   const emailBtn = document.querySelector('.cta-btns .btn-outline');
 
   const lang = html.classList.contains('lang-en') ? 'en' : 'es';
@@ -104,7 +128,9 @@ function updateContactLinks() {
     }
   }
 
-  if (whatsappBtn) whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  whatsappBtns.forEach(btn => {
+    btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  });
   if (emailBtn) emailBtn.href = `mailto:contacto@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   // Dynamic Form Plan selection sync
@@ -120,14 +146,14 @@ function updateContactLinks() {
     if (triggerTextSpan) {
       if (currentPlan) {
         const optionMap = {
-          essential: '[ESSENTIAL] — USD 250 / Identidad & Presencia',
-          professional: '[PROFESSIONAL] — USD 350 / Sistema de Alto Rendimiento',
-          global: '[GLOBAL] — USD 550 / Infraestructura Global'
+          essential: '[ESSENTIAL] — USD 100 / + Dominio',
+          professional: '[PROFESSIONAL] — USD 150 / Más elegido',
+          global: '[GLOBAL] — USD 250 / Todo incluido'
         };
         const optionMapEn = {
-          essential: '[ESSENTIAL] — USD 250 / Identity & Presence',
-          professional: '[PROFESSIONAL] — USD 350 / Performance System',
-          global: '[GLOBAL] — USD 550 / Global Touring Infrastructure'
+          essential: '[ESSENTIAL] — USD 100 / + Domain',
+          professional: '[PROFESSIONAL] — USD 150 / Most chosen',
+          global: '[GLOBAL] — USD 250 / All included'
         };
         const nameMap = lang === 'en' ? optionMapEn : optionMap;
         triggerTextSpan.textContent = (nameMap[currentPlan] || (lang === 'en' ? '[SELECT ARCHITECTURE ▾]' : '[SELECCIONAR ARQUITECTURA ▾]'));
@@ -167,21 +193,19 @@ function setLang(lang) {
 
   // 6. Translate form placeholders dynamically
   const formName = document.getElementById('form-name');
-  const formEmail = document.getElementById('form-email');
+  const formContact = document.getElementById('form-contact');
   const formArtist = document.getElementById('form-artist');
-  const formMessage = document.getElementById('form-message');
-  
+
   if (lang === 'es') {
     if (formName) formName.placeholder = 'Ej: Alejo';
-    if (formEmail) formEmail.placeholder = 'Ej: alejo@artist.com';
+    if (formContact) formContact.placeholder = 'Ej: +54 9 11 ... / artista@email.com';
     if (formArtist) formArtist.placeholder = 'Ej: @alejo_v';
-    if (formMessage) formMessage.placeholder = 'Cuéntanos sobre tu música y tu proyecto...';
   } else {
     if (formName) formName.placeholder = 'e.g. Alejo';
-    if (formEmail) formEmail.placeholder = 'e.g. alejo@artist.com';
+    if (formContact) formContact.placeholder = 'e.g. +34 600 ... / artist@email.com';
     if (formArtist) formArtist.placeholder = 'e.g. @alejo_v';
-    if (formMessage) formMessage.placeholder = 'Tell us about your music and project...';
   }
+  if (typeof syncShowcaseLiveLink === 'function') syncShowcaseLiveLink();
 
   // 7. Update WhatsApp and Email links text dynamically
   updateContactLinks();
@@ -475,7 +499,7 @@ if (modal) {
   });
 }
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeModal();
 });
 
 // Render dynamic animated CSS graphics inside modal
@@ -652,21 +676,105 @@ function renderModalGraphic(type) {
   graphicContainer.innerHTML = html;
 }
 
-// ── FORCE MOBILE VIDEO AUTOPLAY ON FIRST TOUCH OR SCROLL ──
-const showcaseVideo = document.querySelector('.showcase-video');
-if (showcaseVideo) {
-  // Attempt standard immediate play
-  showcaseVideo.play().catch(() => {
-    // Fallback trigger on first user scrolling/touch interaction
-    const forcePlay = () => {
-      showcaseVideo.play().catch(() => {});
-      window.removeEventListener('scroll', forcePlay);
-      window.removeEventListener('touchstart', forcePlay);
-    };
-    window.addEventListener('scroll', forcePlay, { passive: true });
-    window.addEventListener('touchstart', forcePlay, { passive: true });
+// ── SHOWCASE 3 FANNED IPHONES SYNC & AUTOPLAY ──
+const allFanVideos = Array.from(document.querySelectorAll('.fan-video'));
+
+function pauseOtherFanVideos(activeVideo = null) {
+  allFanVideos.forEach(video => {
+    if (video !== activeVideo && !video.paused) {
+      video.pause();
+    }
   });
 }
+
+allFanVideos.forEach(video => {
+  video.pause();
+  video.addEventListener('play', () => {
+    const parentFan = video.closest('[data-fan]');
+    if (!parentFan || !parentFan.classList.contains('is-front')) {
+      video.pause();
+      return;
+    }
+    pauseOtherFanVideos(video);
+  });
+});
+
+function setFanPhoneActive(key, active) {
+  if (!SHOWCASE_ARTISTS[key]) return;
+  const phone = document.querySelector(`[data-fan="${key}"]`);
+  const pill = document.querySelector(`[data-fan-pill="${key}"]`);
+  const video = phone ? phone.querySelector('.fan-video') : null;
+  if (phone) phone.classList.toggle('is-front', active);
+  if (pill) pill.classList.toggle('is-front', active);
+  if (video) {
+    if (active) {
+      pauseOtherFanVideos(video);
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }
+}
+
+function clearAllFanPhones(exceptKey = null) {
+  document.querySelectorAll('[data-fan]').forEach(phone => {
+    if (phone.dataset.fan !== exceptKey) {
+      phone.classList.remove('is-front');
+      const video = phone.querySelector('.fan-video');
+      if (video && !video.paused) video.pause();
+    }
+  });
+  document.querySelectorAll('[data-fan-pill]').forEach(pill => {
+    if (pill.dataset.fanPill !== exceptKey) {
+      pill.classList.remove('is-front');
+    }
+  });
+}
+
+document.querySelectorAll('[data-fan]').forEach(phone => {
+  phone.addEventListener('pointerenter', (e) => {
+    if (e.pointerType === 'mouse') {
+      clearAllFanPhones(phone.dataset.fan);
+      setFanPhoneActive(phone.dataset.fan, true);
+    }
+  });
+  phone.addEventListener('pointerleave', (e) => {
+    if (e.pointerType === 'mouse') {
+      setFanPhoneActive(phone.dataset.fan, false);
+    }
+  });
+  phone.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isAlreadyFront = phone.classList.contains('is-front');
+    if (isAlreadyFront) {
+      setFanPhoneActive(phone.dataset.fan, false);
+    } else {
+      clearAllFanPhones(phone.dataset.fan);
+      setFanPhoneActive(phone.dataset.fan, true);
+      activeShowcaseArtist = phone.dataset.fan;
+    }
+  });
+});
+
+document.querySelectorAll('[data-fan-pill]').forEach(pill => {
+  pill.addEventListener('pointerenter', (e) => {
+    if (e.pointerType === 'mouse') {
+      clearAllFanPhones(pill.dataset.fanPill);
+      setFanPhoneActive(pill.dataset.fanPill, true);
+    }
+  });
+  pill.addEventListener('pointerleave', (e) => {
+    if (e.pointerType === 'mouse') {
+      setFanPhoneActive(pill.dataset.fanPill, false);
+    }
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('[data-fan]') && !e.target.closest('[data-fan-pill]')) {
+    clearAllFanPhones();
+  }
+});
 
 // ── CUSTOM SELECT DROPDOWN LOGIC ──
 const selectTrigger = document.getElementById('custom-select-trigger');
@@ -825,7 +933,7 @@ if (cursor && cursorDot && window.matchMedia('(pointer: fine)').matches) {
     cursorDot.classList.toggle('hover', isHover);
   };
 
-  const interactiveSelectors = 'a, button, select, input, textarea, [role="button"], .facc-item, .plan-card, .port-card, .custom-option';
+  const interactiveSelectors = 'a, button, select, input, textarea, [role="button"], .facc-item, .plan-card, .port-card, .custom-option, .fan-phone, .fan-pill';
   
   document.addEventListener('mouseover', (e) => {
     if (e.target.closest(interactiveSelectors)) {
