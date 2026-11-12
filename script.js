@@ -72,7 +72,7 @@ let currentPlan = null; // Global tracker for selected plan
 const SHOWCASE_ARTISTS = {
   jansound: { label: 'JANSOUND', url: 'https://jansound.com' },
   alejo: { label: 'ALEJO V', url: 'https://alejo-v.com' },
-  dante: { label: 'DANTE TOTO', url: 'https://martuugreco1104.github.io/dantetotoEPK/' }
+  dante: { label: 'DANTE TOTO', url: 'https://dantetotoepk.netlify.app/' }
 };
 let activeShowcaseArtist = 'jansound';
 let manualShowcaseLockUntil = 0;
