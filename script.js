@@ -139,6 +139,13 @@ function updateContactLinks() {
     formPlan.value = currentPlan || '';
   }
 
+  // Sync custom select option active states
+  document.querySelectorAll('#custom-select-options .custom-option').forEach(opt => {
+    const isSelected = Boolean(currentPlan && opt.dataset.value === currentPlan);
+    opt.classList.toggle('selected', isSelected);
+    opt.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+  });
+
   // Dynamic Custom Select Trigger visual text & color sync
   const selectTrigger = document.getElementById('custom-select-trigger');
   if (selectTrigger) {
@@ -929,3 +936,32 @@ if (precisionCursor && (window.matchMedia('(any-pointer: fine)').matches || wind
     precisionCursor.classList.remove('is-clicking');
   });
 }
+
+// ── COPY EMAIL TO CLIPBOARD ──
+document.querySelectorAll('.copy-email-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const email = btn.dataset.email || btn.textContent.trim();
+    const isEn = document.documentElement.classList.contains('lang-en');
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const tmp = document.createElement('textarea');
+        tmp.value = email;
+        tmp.style.position = 'fixed';
+        tmp.style.opacity = '0';
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+      }
+    } catch (_) {}
+    btn.textContent = isEn ? 'COPIED ✓' : 'COPIADO ✓';
+    btn.classList.add('is-copied');
+    clearTimeout(btn._copyTimer);
+    btn._copyTimer = setTimeout(() => {
+      btn.textContent = email;
+      btn.classList.remove('is-copied');
+    }, 2000);
+  });
+});

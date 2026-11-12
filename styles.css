@@ -166,7 +166,10 @@ ul { list-style: none; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 24px 6%;
-  border-bottom: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
 }
 #nav.scrolled {
@@ -1283,12 +1286,21 @@ section { padding: 160px 8% 140px; position: relative; }
   position: relative;
   overflow: hidden;
   background: #000000;
+  pointer-events: none;
+  user-select: none;
 }
 .fan-video {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  pointer-events: none;
+}
+.fan-video::-webkit-media-controls,
+.fan-video::-webkit-media-controls-enclosure,
+.fan-video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  opacity: 0 !important;
 }
 .fan-home-bar {
   position: absolute;
@@ -1324,7 +1336,8 @@ section { padding: 160px 8% 140px; position: relative; }
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   transition: border-color 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .fan-pill:hover,
@@ -3431,4 +3444,24 @@ section { padding: 160px 8% 140px; position: relative; }
 }
 @media (not (any-pointer: fine)) {
   .precision-cursor { display: none !important; }
+}
+
+/* ── COPY EMAIL BUTTON ── */
+.copy-email-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.copy-email-btn:hover,
+.copy-email-btn.is-copied {
+  color: var(--white);
+}
+.copy-email-btn.is-copied {
+  color: #4ADE80;
 }
