@@ -98,7 +98,7 @@ function updateContactLinks() {
   const emailBtn = document.querySelector('.cta-btns .btn-outline');
 
   const lang = html.classList.contains('lang-en') ? 'en' : 'es';
-  const phone = '5491100000000'; // Target phone
+  const phone = '5491136073230'; // Target phone
 
   let text = '';
   let mailSubject = '';
@@ -131,7 +131,7 @@ function updateContactLinks() {
   whatsappBtns.forEach(btn => {
     btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   });
-  if (emailBtn) emailBtn.href = `mailto:contacto@1104digital.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  if (emailBtn) emailBtn.href = `mailto:martinagreco1104@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   // Dynamic Form Plan selection sync
   const formPlan = document.getElementById('form-plan');
@@ -882,70 +882,4 @@ if (contactForm) {
     }
   });
 }
-
-// ── CUSTOM CURSOR SYSTEM (Lerp trailing circle & hover interaction listener) ──
-const cursor = document.getElementById('custom-cursor');
-const cursorDot = document.getElementById('custom-cursor-dot');
-
-if (cursor && cursorDot && window.matchMedia('(pointer: fine)').matches) {
-  let mouseX = 0, mouseY = 0;
-  let cursorX = 0, cursorY = 0;
-
-  // Sync cursor coordinates on mousemove
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    // Dot tracks the mouse instantly for precision feedback
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-    
-    // Unhide cursor elements on first movement to avoid jumps from (0,0)
-    if (cursor.style.display !== 'block') {
-      cursor.style.display = 'block';
-      cursorDot.style.display = 'block';
-    }
-  });
-
-  // Keep tracking mouse position during scroll to avoid cursor displacement
-  window.addEventListener('scroll', (e) => {
-    // Dot retains screen-fixed tracking
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-  }, { passive: true });
-
-  // Loop requestAnimationFrame for smooth outer ring lag (linear interpolation)
-  const speed = 0.16; // Lerping follow factor
-  const renderCursor = () => {
-    cursorX += (mouseX - cursorX) * speed;
-    cursorY += (mouseY - cursorY) * speed;
-
-    cursor.style.left = `${cursorX}px`;
-    cursor.style.top = `${cursorY}px`;
-
-    requestAnimationFrame(renderCursor);
-  };
-  requestAnimationFrame(renderCursor);
-
-  // Manage Hover States over interactive UI components via event delegation
-  const updateHover = (isHover) => {
-    cursor.classList.toggle('hover', isHover);
-    cursorDot.classList.toggle('hover', isHover);
-  };
-
-  const interactiveSelectors = 'a, button, select, input, textarea, [role="button"], .facc-item, .plan-card, .port-card, .custom-option, .fan-phone, .fan-pill';
-  
-  document.addEventListener('mouseover', (e) => {
-    if (e.target.closest(interactiveSelectors)) {
-      updateHover(true);
-    }
-  });
-  
-  document.addEventListener('mouseout', (e) => {
-    if (e.target.closest(interactiveSelectors)) {
-      updateHover(false);
-    }
-  });
-}
-
 
