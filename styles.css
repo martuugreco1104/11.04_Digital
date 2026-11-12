@@ -3335,3 +3335,100 @@ section { padding: 160px 8% 140px; position: relative; }
   }
 }
 
+
+/* ── PRECISION ARCHITECTURAL CURSOR (11.04_DIGITAL) ── */
+@media (pointer: fine) and (hover: hover) {
+  html.has-precision-cursor,
+  html.has-precision-cursor * {
+    cursor: none !important;
+  }
+  .precision-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 0.2s ease;
+  }
+  .precision-cursor.is-visible {
+    opacity: 1;
+  }
+  .pc-reticle {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pc-corner {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-color: rgba(255, 255, 255, 0.85);
+    border-style: solid;
+    transition: border-color 0.25s ease, width 0.25s ease, height 0.25s ease;
+  }
+  .pc-tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+  .pc-tr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+  .pc-bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+  .pc-br { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+  .pc-cross-h {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, background 0.25s ease;
+  }
+  .pc-cross-v {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.45);
+    transform: translate(-50%, -50%);
+    transition: height 0.25s ease, background 0.25s ease;
+  }
+  .pc-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--blue);
+    box-shadow: 0 0 10px rgba(0, 68, 255, 0.9);
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
+  }
+  .precision-cursor.is-hover .pc-reticle {
+    transform: rotate(45deg) scale(1.25);
+  }
+  .precision-cursor.is-hover .pc-corner {
+    border-color: var(--blue);
+    width: 9px;
+    height: 9px;
+  }
+  .precision-cursor.is-hover .pc-cross-h {
+    width: 18px;
+    background: #FFFFFF;
+  }
+  .precision-cursor.is-hover .pc-cross-v {
+    height: 18px;
+    background: #FFFFFF;
+  }
+  .precision-cursor.is-hover .pc-core {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: #FFFFFF;
+  }
+  .precision-cursor.is-clicking .pc-reticle {
+    transform: scale(0.75);
+  }
+}
+@media (pointer: coarse), (hover: none) {
+  .precision-cursor { display: none !important; }
+}

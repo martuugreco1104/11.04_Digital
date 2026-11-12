@@ -883,3 +883,49 @@ if (contactForm) {
   });
 }
 
+
+// ── PRECISION ARCHITECTURAL CURSOR ──
+const precisionCursor = document.getElementById('precision-cursor');
+if (precisionCursor && window.matchMedia('(pointer: fine) and (hover: hover)').matches) {
+  let targetX = -100, targetY = -100;
+  let currentX = -100, currentY = -100;
+  let cursorReady = false;
+  const interactiveSelectors = 'a, button, select, input, textarea, [role="button"], .facc-item, .plan-card, .port-card, .custom-option, .fan-phone, .fan-pill';
+
+  const animateCursor = () => {
+    currentX += (targetX - currentX) * 0.28;
+    currentY += (targetY - currentY) * 0.28;
+    precisionCursor.style.transform = `translate3d(${currentX - 17}px, ${currentY - 17}px, 0)`;
+    requestAnimationFrame(animateCursor);
+  };
+  requestAnimationFrame(animateCursor);
+
+  window.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!cursorReady) {
+      currentX = targetX;
+      currentY = targetY;
+      cursorReady = true;
+      document.documentElement.classList.add('has-precision-cursor');
+      precisionCursor.classList.add('is-visible');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    precisionCursor.classList.remove('is-visible');
+  });
+  document.addEventListener('mouseenter', () => {
+    if (cursorReady) precisionCursor.classList.add('is-visible');
+  });
+
+  document.addEventListener('mouseover', (e) => {
+    precisionCursor.classList.toggle('is-hover', Boolean(e.target.closest(interactiveSelectors)));
+  });
+  document.addEventListener('mousedown', () => {
+    precisionCursor.classList.add('is-clicking');
+  });
+  document.addEventListener('mouseup', () => {
+    precisionCursor.classList.remove('is-clicking');
+  });
+}
