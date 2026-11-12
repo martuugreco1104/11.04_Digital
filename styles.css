@@ -2852,10 +2852,11 @@ section { padding: 160px 8% 140px; position: relative; }
   .lang-switcher-mobile .lang-btn { min-width: 36px; min-height: 44px; padding: 0 6px; font-size: 0.68rem; }
   .nav-cta-mobile { order: 3; display: inline-flex !important; padding: 0 12px !important; min-height: 44px; font-size: 0.6rem !important; letter-spacing: 0.08em !important; white-space: nowrap; }
   .burger { display: none !important; }
-  #hero { padding: 82px 5% 28px; min-height: 100svh; justify-content: flex-start; }
-  .hero-meta { position: static; margin-bottom: 10px; font-size: 0.6rem; }
-  .hero-grid-container { gap: 20px; }
-  .hero-label { margin-bottom: 8px; font-size: 0.6rem; }
+  #hero { padding: 96px 6% 48px; min-height: 100svh; justify-content: center; align-items: center; }
+  .hero-meta { position: absolute; top: 82px; left: 6%; right: 6%; margin-bottom: 0; font-size: 0.6rem; }
+  .hero-grid-container { gap: 0; justify-items: center; }
+  .hero-text { align-items: center; text-align: center; width: 100%; max-width: 520px; margin: 0 auto; }
+  .hero-label { margin-bottom: 12px; font-size: 0.62rem; text-align: center; }
   
   /* Fix parallax background attachment scaling on mobile Chrome/Safari */
   .hero-bg, .scene-bg, .cta-bg, .editorial-bg {
@@ -2898,6 +2899,7 @@ section { padding: 160px 8% 140px; position: relative; }
     gap: 10px;
     width: 100%;
     max-width: 420px;
+    margin: 0 auto;
   }
   .hero-btns .btn-primary,
   .hero-btns .btn-outline {
@@ -2910,27 +2912,8 @@ section { padding: 160px 8% 140px; position: relative; }
   }
   .hero-coords { display: none; }
   .br-d { display: none; }
-  .hero-mockup-composition {
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  .hero-mockup-laptop {
+  .hero-visuals {
     display: none !important;
-  }
-  .hero-mockup-phone {
-    position: relative;
-    width: auto;
-    max-width: 190px;
-    max-height: 36svh;
-    object-fit: contain;
-    transform: none !important;
-    margin: 0 auto;
-  }
-  .hero-mockup-composition:hover .hero-mockup-phone {
-    transform: translateY(-4px) !important;
   }
   .cta-links {
     flex-direction: column;
