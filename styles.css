@@ -2843,8 +2843,19 @@ section { padding: 160px 8% 140px; position: relative; }
   .burger { display: flex; }
   .lang-switcher-mobile { display: flex; }
   
-  #hero { padding: 140px 6% 80px; }
-  .hero-meta { top: 100px; }
+  #nav { padding: 12px 5%; gap: 8px; }
+  #nav.scrolled { padding: 12px 5%; }
+  .nav-brand { order: 1; flex-shrink: 0; }
+  .nav-brand img { width: 38px; height: 38px; }
+  .nav-right-mobile { order: 2; display: flex !important; align-items: center; gap: 6px; margin-left: auto; }
+  .lang-switcher-mobile { display: flex !important; align-items: center; gap: 4px; }
+  .lang-switcher-mobile .lang-btn { min-width: 36px; min-height: 44px; padding: 0 6px; font-size: 0.68rem; }
+  .nav-cta-mobile { order: 3; display: inline-flex !important; padding: 0 12px !important; min-height: 44px; font-size: 0.6rem !important; letter-spacing: 0.08em !important; white-space: nowrap; }
+  .burger { display: none !important; }
+  #hero { padding: 82px 5% 28px; min-height: 100svh; justify-content: flex-start; }
+  .hero-meta { position: static; margin-bottom: 10px; font-size: 0.6rem; }
+  .hero-grid-container { gap: 20px; }
+  .hero-label { margin-bottom: 8px; font-size: 0.6rem; }
   
   /* Fix parallax background attachment scaling on mobile Chrome/Safari */
   .hero-bg, .scene-bg, .cta-bg, .editorial-bg {
@@ -2868,48 +2879,68 @@ section { padding: 160px 8% 140px; position: relative; }
     background-position: 68% center !important; /* Crop focused on artist visual */
   }
 
-  .hero-title { font-size: clamp(1.9rem, 9vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.05; }
+  .hero-title { font-size: clamp(1.75rem, 8vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 12px; }
   .hero-sub {
     text-align: center;
-    max-width: 580px;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0.55;
+    max-width: 520px;
+    margin: 0 auto 18px;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    opacity: 1;
   }
   .hero-sub .lang-es-el,
   .hero-sub .lang-en-el {
     text-align: center;
+  }
+  .hero-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 420px;
+  }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline {
+    min-width: 0;
+    width: 100%;
+    height: 46px;
+    padding: 0 10px;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
   }
   .hero-coords { display: none; }
   .br-d { display: none; }
   .hero-mockup-composition {
     height: auto;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
     position: relative;
   }
   .hero-mockup-laptop {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    transform: none !important;
-    z-index: 10;
+    display: none !important;
   }
   .hero-mockup-phone {
     position: relative;
-    width: 70%;
-    max-width: 160px;
+    width: auto;
+    max-width: 190px;
+    max-height: 36svh;
+    object-fit: contain;
     transform: none !important;
-    z-index: 20;
-    margin-top: -30px;
-  }
-  .hero-mockup-composition:hover .hero-mockup-laptop {
-    transform: translateY(-4px) !important;
+    margin: 0 auto;
   }
   .hero-mockup-composition:hover .hero-mockup-phone {
     transform: translateY(-4px) !important;
+  }
+  .cta-links {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 0 16px;
+  }
+  .cta-links span {
+    display: none;
   }
 
   /* Compact marquees for smaller mobile viewports */
@@ -3087,9 +3118,10 @@ section { padding: 160px 8% 140px; position: relative; }
 }
 
 @media (max-width: 639px) {
-  #nav { padding: 16px 5%; }
-  #nav.scrolled { padding: 16px 5%; }
-  .nav-links, .nav-right-mobile { display: none !important; }
+  #nav { padding: 12px 4%; }
+  #nav.scrolled { padding: 12px 4%; }
+  .nav-links, .burger { display: none !important; }
+  .nav-right-mobile { display: flex !important; }
   .nav-cta-mobile { display: inline-flex !important; }
   
   /* Make video scroll fill the full mobile width */
@@ -3131,7 +3163,6 @@ section { padding: 160px 8% 140px; position: relative; }
 @media (max-width: 480px) {
   .features-grid { grid-template-columns: 1fr; }
   .feat-card-wide { grid-column: span 1; }
-  .hero-btns { flex-direction: column; }
   .btn-primary, .btn-outline { text-align: center; }
   .metrics-grid { grid-template-columns: 1fr; gap: 16px; }
   .metric-card { border-left: 1px solid var(--border); padding-left: 12px; }
