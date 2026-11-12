@@ -3337,7 +3337,7 @@ section { padding: 160px 8% 140px; position: relative; }
 
 
 /* ── PRECISION ARCHITECTURAL CURSOR (11.04_DIGITAL) ── */
-@media (pointer: fine) and (hover: hover) {
+@media (any-pointer: fine) {
   html.has-precision-cursor,
   html.has-precision-cursor * {
     cursor: none !important;
@@ -3429,6 +3429,6 @@ section { padding: 160px 8% 140px; position: relative; }
     transform: scale(0.75);
   }
 }
-@media (pointer: coarse), (hover: none) {
+@media (not (any-pointer: fine)) {
   .precision-cursor { display: none !important; }
 }

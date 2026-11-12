@@ -886,7 +886,7 @@ if (contactForm) {
 
 // ── PRECISION ARCHITECTURAL CURSOR ──
 const precisionCursor = document.getElementById('precision-cursor');
-if (precisionCursor && window.matchMedia('(pointer: fine) and (hover: hover)').matches) {
+if (precisionCursor && (window.matchMedia('(any-pointer: fine)').matches || window.matchMedia('(pointer: fine)').matches)) {
   let targetX = -100, targetY = -100;
   let currentX = -100, currentY = -100;
   let cursorReady = false;
