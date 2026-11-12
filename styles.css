@@ -454,6 +454,7 @@ section { padding: 160px 8% 140px; position: relative; }
   gap: 16px;
   flex-wrap: wrap;
 }
+.hero-bottom-meta { display: none; }
 .hero-coords {
   position: absolute; bottom: 36px; right: 8%;
   font-size: 0.6rem; letter-spacing: 0.15em;
@@ -2852,11 +2853,14 @@ section { padding: 160px 8% 140px; position: relative; }
   .lang-switcher-mobile .lang-btn { min-width: 36px; min-height: 44px; padding: 0 6px; font-size: 0.68rem; }
   .nav-cta-mobile { order: 3; display: inline-flex !important; padding: 0 12px !important; min-height: 44px; font-size: 0.6rem !important; letter-spacing: 0.08em !important; white-space: nowrap; }
   .burger { display: none !important; }
-  #hero { padding: 96px 6% 48px; min-height: 100svh; justify-content: center; align-items: center; }
-  .hero-meta { position: absolute; top: 82px; left: 6%; right: 6%; margin-bottom: 0; font-size: 0.6rem; }
+  #hero { padding: 84px 6% 24px; min-height: 100dvh; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; }
+  .hero-meta { position: static; margin-bottom: 0; font-size: 0.6rem; z-index: 4; width: 100%; }
+  .hero-content { position: relative; z-index: 4; margin: auto 0; padding: 24px 0; }
   .hero-grid-container { gap: 0; justify-items: center; }
   .hero-text { align-items: center; text-align: center; width: 100%; max-width: 520px; margin: 0 auto; }
-  .hero-label { margin-bottom: 12px; font-size: 0.62rem; text-align: center; }
+  .hero-label { margin-bottom: 16px; font-size: 0.62rem; text-align: center; }
+  .hero-bottom-meta { display: flex; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 4; width: 100%; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--grey-muted); }
+  .blue-accent-text { text-shadow: 0 0 12px rgba(0, 68, 255, 0.16); }
   
   /* Fix parallax background attachment scaling on mobile Chrome/Safari */
   .hero-bg, .scene-bg, .cta-bg, .editorial-bg {
@@ -2880,13 +2884,13 @@ section { padding: 160px 8% 140px; position: relative; }
     background-position: 68% center !important; /* Crop focused on artist visual */
   }
 
-  .hero-title { font-size: clamp(1.75rem, 8vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 12px; }
+  .hero-title { font-size: clamp(1.85rem, 8.2vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.04; margin-bottom: 0; }
   .hero-sub {
     text-align: center;
     max-width: 520px;
-    margin: 0 auto 18px;
-    font-size: 0.78rem;
-    line-height: 1.5;
+    margin: 24px auto 32px;
+    font-size: 0.82rem;
+    line-height: 1.65;
     opacity: 1;
   }
   .hero-sub .lang-es-el,
