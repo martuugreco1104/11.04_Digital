@@ -223,7 +223,12 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   // Derive lang from button id: btn-es, btn-es-m → 'es'
   const lang = btn.id.replace('btn-', '').replace('-m', '');
   btn.dataset.lang = lang;
-  btn.addEventListener('click', () => setLang(lang));
+  btn.addEventListener('click', () => {
+    setLang(lang);
+    if (window.posthog) {
+      window.posthog.capture('language_switched', { language: lang });
+    }
+  });
 });
 
 // Init language from localStorage or default ES
@@ -237,6 +242,21 @@ document.querySelectorAll('.plan-card .btn-plan').forEach(btn => {
     if (card) {
       currentPlan = card.dataset.plan || null;
       updateContactLinks();
+      if (window.posthog) {
+        window.posthog.capture('plan_selected', { plan: currentPlan });
+      }
+    }
+  });
+});
+
+// Wire up WhatsApp buttons analytics tracking
+document.querySelectorAll('.btn-secondary-wa').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (window.posthog) {
+      window.posthog.capture('whatsapp_cta_clicked', {
+        plan: currentPlan || 'none',
+        lang: document.documentElement.classList.contains('lang-en') ? 'en' : 'es'
+      });
     }
   });
 });
@@ -490,6 +510,14 @@ document.querySelectorAll('.facc-item[data-comp]').forEach(item => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    if (window.posthog) {
+      window.posthog.capture('system_component_viewed', {
+        component: compKey,
+        code: data.code,
+        lang: lang
+      });
+    }
   });
 });
 
@@ -759,6 +787,9 @@ document.querySelectorAll('[data-fan]').forEach(phone => {
       clearAllFanPhones(phone.dataset.fan);
       setFanPhoneActive(phone.dataset.fan, true);
       activeShowcaseArtist = phone.dataset.fan;
+      if (window.posthog) {
+        window.posthog.capture('showcase_artist_selected', { artist: phone.dataset.fan });
+      }
     }
   });
 });
@@ -870,6 +901,12 @@ if (contactForm) {
       if (response.ok) {
         // Success
         if (successMessage) successMessage.style.display = 'block';
+        if (window.posthog) {
+          window.posthog.capture('booking_inquiry_submitted', {
+            plan: formData.get('plan') || currentPlan || 'unspecified',
+            lang: document.documentElement.classList.contains('lang-en') ? 'en' : 'es'
+          });
+        }
         contactForm.reset();
         // Reset custom plan select text
         currentPlan = null;

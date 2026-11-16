@@ -5,6 +5,19 @@ Your mission is to maintain, develop, and polish high-performance digital platfo
 
 ---
 
+## 0. PRINCIPIOS OPERATIVOS: ELEPHANT-GOLDFISH MODEL (EGM)
+
+1. **Fase de Análisis (El Elefante):** Antes de modificar código o crear archivos nuevos, debate y valida la estructura, el flujo de datos y los componentes necesarios. Cero código improvisado.
+2. **Especificación Estricta:** Toda tarea compleja o rediseño de interfaz debe documentarse brevemente en un archivo `SPEC.md` antes de su ejecución.
+3. **Aislamiento y Limpieza (El Pez Dorado):** Al ejecutar cambios, actúa con precisión quirúrgica, evitando código basura (slop), parches innecesarios o pérdida de contexto visual (respetando dark mode, tipografías y escalas de diseño acordadas).
+
+### Stack Tecnológico Base
+- **Frontend:** HTML5, CSS3, JavaScript / componentes modularizados.
+- **Estética:** Dark mode, alto contraste, acentos neón / Klein blue (`#0055A5`) y diseño mobile-first.
+- **Control:** Commits limpios y estructurados por etapas.
+
+---
+
 ## 1. CORE ARCHITECTURAL & DESIGN STANDARDS
 
 - **Design Philosophy:** Minimalist, architectural, dark-mode/club aesthetic, precision engineering. Zero generic agency bloat or template aesthetics.
